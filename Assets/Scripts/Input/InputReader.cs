@@ -8,7 +8,12 @@ public class InputReader : MonoBehaviour, IInputReader
     public UnityAction<Vector2> OnMoveEvent { get; set; }
     public UnityAction OnLeftDashEvent { get; set; }
     public UnityAction OnRightDashEvent { get; set; }
-    public UnityAction<string> OnAttackEvent { get; set; }
+    public UnityAction OnLightPunchEvent { get; set; }
+    public UnityAction OnMediumPunchEvent { get; set; }
+    public UnityAction OnHeavyPunchEvent { get; set; }
+    public UnityAction OnLightKickEvent { get; set; }
+    public UnityAction OnMediumKickEvent { get; set; }
+    public UnityAction OnHeavyKickEvent { get; set; }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -38,11 +43,51 @@ public class InputReader : MonoBehaviour, IInputReader
         }
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
+    public void OnLightPunch(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Performed)
         {
-            OnAttackEvent?.Invoke(context.action.name);
+            OnLightPunchEvent?.Invoke();
+        }
+    }
+
+    public void OnMediumPunch(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnMediumPunchEvent?.Invoke();
+        }
+    }
+
+    public void OnHeavyPunch(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnHeavyPunchEvent?.Invoke();
+        }
+    }
+
+    public void OnLightKick(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnLightKickEvent?.Invoke();
+        }
+    }
+
+    public void OnMediumKick(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnMediumKickEvent?.Invoke();
+        }
+    }
+
+    public void OnHeavyKick(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnHeavyKickEvent?.Invoke();
         }
     }
 }

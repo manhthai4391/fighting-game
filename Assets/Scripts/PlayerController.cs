@@ -21,7 +21,6 @@ public class PlayerController : Character, IHurtResponse
     void InputBinding()
     {
         playerInput.OnMoveEvent += OnMove;
-        playerInput.OnAttackEvent += OnAttack;
         playerInput.OnRightDashEvent += OnRightDash;
         playerInput.OnLeftDashEvent += OnLeftDash;
     }
@@ -49,7 +48,6 @@ public class PlayerController : Character, IHurtResponse
     void UnBindInput()
     {
         playerInput.OnMoveEvent -= OnMove;
-        playerInput.OnAttackEvent -= OnAttack;
         playerInput.OnRightDashEvent -= OnRightDash;
         playerInput.OnLeftDashEvent -= OnLeftDash;
     }
