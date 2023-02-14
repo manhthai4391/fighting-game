@@ -28,11 +28,12 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     public void Move(Vector2 input)
     {
         horizontalInput = input.x;
-        if(input.y > 0.1f && Grounded)
-        {
-            rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
-            Grounded = false;
-        }
+    }
+
+    public void Jump()
+    {
+        rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        Grounded = false;
     }
 
     public void RightDash() 
@@ -58,7 +59,6 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     {
         if(collision.gameObject.CompareTag(groundTag))
         {
-            Debug.Log("grounded");
             Grounded = true;
         }
     }

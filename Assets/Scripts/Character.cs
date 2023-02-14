@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class Character : StateMachine
+public abstract class Character : MonoBehaviour
 {
+    [HideInInspector]
     public Health health;
     public IAnimatorBase animator;
     public IMovementBase movement;

@@ -188,6 +188,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &23525900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 23525903}
+  - component: {fileID: 23525902}
+  - component: {fileID: 23525901}
+  m_Layer: 12
+  m_Name: High Hurtbox
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &23525901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23525900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a90cf666492ee4b873308498db0cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxType: 2
+--- !u!65 &23525902
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23525900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.25, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &23525903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23525900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.529, z: 0.116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 802308005}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25911130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1556,7 @@ GameObject:
   - component: {fileID: 196218238}
   - component: {fileID: 196218240}
   - component: {fileID: 196218239}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Middle Hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1512,12 +1571,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196218237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.025, z: 0.685}
+  m_LocalPosition: {x: 0, y: 1.025, z: 0.685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652718151287}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &196218239
 MonoBehaviour:
@@ -1531,8 +1590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c273741c5294c4589ab01199710f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxName: 
-  attackData: {fileID: 0}
   colliderTag: Player
 --- !u!65 &196218240
 BoxCollider:
@@ -4908,9 +4965,9 @@ GameObject:
   - component: {fileID: 350523882}
   - component: {fileID: 350523884}
   - component: {fileID: 350523883}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle Hurtbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4928,7 +4985,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652718151287}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &350523883
 MonoBehaviour:
@@ -6764,9 +6821,9 @@ GameObject:
   - component: {fileID: 742256783}
   - component: {fileID: 742256785}
   - component: {fileID: 742256784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: High Hitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6779,12 +6836,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742256782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.529, z: 0.685}
+  m_LocalPosition: {x: 0, y: 1.529, z: 0.685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652718151287}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &742256784
 MonoBehaviour:
@@ -6798,8 +6855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c273741c5294c4589ab01199710f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxName: 
-  attackData: {fileID: 0}
   colliderTag: Player
 --- !u!65 &742256785
 BoxCollider:
@@ -7232,6 +7287,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2776036073345839297, guid: eaa6de41706ecd24f94e9221c48b182d, type: 3}
   m_PrefabInstance: {fileID: 763888634}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &777371291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777371294}
+  - component: {fileID: 777371293}
+  - component: {fileID: 777371292}
+  m_Layer: 12
+  m_Name: Low Hurtbox
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &777371292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777371291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a90cf666492ee4b873308498db0cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtBoxType: 0
+--- !u!65 &777371293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777371291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 0.5, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &777371294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777371291}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.0030014482, y: 0.35000002, z: 0.03299952}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 802308005}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &785698616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8096,6 +8210,7 @@ GameObject:
   - component: {fileID: 802308004}
   - component: {fileID: 802308003}
   - component: {fileID: 802308002}
+  - component: {fileID: 802308006}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player
@@ -8166,9 +8281,26 @@ Transform:
   m_Children:
   - {fileID: 836361696}
   - {fileID: 1828184910}
+  - {fileID: 23525903}
+  - {fileID: 777371294}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &802308006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802308001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fdc2853cbec5940bf824b179dd34ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxes:
+  - {fileID: 23525901}
+  - {fileID: 777371292}
 --- !u!1 &805417636
 GameObject:
   m_ObjectHideFlags: 0
@@ -9851,9 +9983,9 @@ GameObject:
   - component: {fileID: 937797857}
   - component: {fileID: 937797859}
   - component: {fileID: 937797858}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Low Hurtbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15731,7 +15863,7 @@ GameObject:
   - component: {fileID: 1470018069}
   - component: {fileID: 1470018071}
   - component: {fileID: 1470018070}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Low Hitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -15746,12 +15878,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470018068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.35, z: 0.686}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0.686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652718151287}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1470018070
 MonoBehaviour:
@@ -15765,8 +15897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c273741c5294c4589ab01199710f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBoxName: 
-  attackData: {fileID: 0}
   colliderTag: Player
 --- !u!65 &1470018071
 BoxCollider:
@@ -22372,7 +22502,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 90
-  field of view: 22.04003
+  field of view: 22.050543
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -25702,9 +25832,9 @@ GameObject:
   - component: {fileID: 2121899287}
   - component: {fileID: 2121899289}
   - component: {fileID: 2121899288}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: High Hurtbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25722,7 +25852,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450652718151287}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2121899288
 MonoBehaviour:
@@ -26843,12 +26973,12 @@ Transform:
   m_Children:
   - {fileID: 6240862982985828149}
   - {fileID: 5465940247503591139}
-  - {fileID: 196218238}
-  - {fileID: 350523882}
   - {fileID: 1470018069}
-  - {fileID: 937797857}
-  - {fileID: 2121899287}
+  - {fileID: 196218238}
   - {fileID: 742256783}
+  - {fileID: 937797857}
+  - {fileID: 350523882}
+  - {fileID: 2121899287}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -26907,17 +27037,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450652718151287}
-  - component: {fileID: 919132149062855886}
   - component: {fileID: 919132149062855895}
-  - component: {fileID: 919132149062855894}
   - component: {fileID: 919132149062855893}
-  - component: {fileID: 919132149062855892}
   - component: {fileID: 919132149062855891}
-  - component: {fileID: 5866666020928089101}
+  - component: {fileID: 919132149062855894}
+  - component: {fileID: 919132149062855886}
+  - component: {fileID: 919132149062855892}
   - component: {fileID: 919132149062855888}
+  - component: {fileID: 5866666020928089101}
   - component: {fileID: 919132149062855887}
   - component: {fileID: 919132149062855890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -27024,7 +27154,19 @@ MonoBehaviour:
     m_ActionId: 944c78ae-1e35-46bf-90da-c2fe291bcfc0
     m_ActionName: Player/Punch[/Keyboard/g]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 919132149062855894}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: cae4fbfc-20d5-4110-a57e-aa0eae21f56d
     m_ActionName: Player/Kick[/Keyboard/h]
   - m_PersistentCalls:
@@ -27100,19 +27242,67 @@ MonoBehaviour:
     m_ActionId: 1c71a525-bc13-4084-b535-a404fd44cf55
     m_ActionName: Player/LEFT_DASH[/Keyboard/a]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 919132149062855894}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 22811e09-0e40-469a-8359-e70ed6ca09e1
     m_ActionName: Player/MEDIUM_PUNCH[/Keyboard/k]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 919132149062855894}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7430a855-b3a3-4eeb-a8b4-eaea1fb73898
     m_ActionName: Player/MEDIUM_KICK[/Keyboard/i]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 919132149062855894}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 76f55058-3497-40f0-be0e-e13db423b785
     m_ActionName: Player/HEAVY_PUNCH[/Keyboard/l]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 919132149062855894}
+        m_TargetAssemblyTypeName: InputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4066908d-0604-4d5e-8f2c-8d6e6533593b
     m_ActionName: Player/HEAVY_KICK[/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 0
@@ -27157,8 +27347,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a43fbcec25b17346a8df47ba555ed4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacks: []
-  hitBoxes: []
+  attacks:
+  - {fileID: 11400000, guid: 3de1f5ef362f9db4baf908bad1c4f416, type: 2}
+  - {fileID: 11400000, guid: ad8e3cca6ab38cf459d0135a91247e88, type: 2}
+  - {fileID: 11400000, guid: df4bde720f9ba9848bd18bc137e678be, type: 2}
+  - {fileID: 11400000, guid: a58b37116a359254a98099b0f99dd68f, type: 2}
+  - {fileID: 11400000, guid: 6e2a68d7b37f950428a6fd850b8ee19b, type: 2}
+  - {fileID: 11400000, guid: d762731c64a95834990fb806e363d0da, type: 2}
+  hitBoxes:
+  - {fileID: 742256784}
+  - {fileID: 196218239}
+  - {fileID: 1470018070}
 --- !u!114 &919132149062855894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27184,7 +27383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
-  jumpForce: 3
+  jumpForce: 5
   airBorneSpeed: 2.5
   dashForce: 5
   groundTag: Ground

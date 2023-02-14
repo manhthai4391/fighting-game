@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class HurtboxTest : MonoBehaviour
 {
-    HurtBox hurtbox;
+    [SerializeField]
+    HurtBox[] hurtboxes;
     // Start is called before the first frame update
     void Start()
     {
-        hurtbox = GetComponent<HurtBox>();
-        hurtbox.onHitEvent += OnHit;
+        foreach(HurtBox hurtbox in hurtboxes)
+        {
+            hurtbox.onHitEvent += OnHit;
+        }
+        
     }
 
     void OnHit(HitData hitData)
     {
-        Debug.Log("Hit: " + hitData.attack.damage.ToString());
+        Debug.Log("Hit: " + hitData.attack.damage.ToString() + " on " + hitData.hurtBoxPosition.ToString());
     }
 
     void OnDisable()
     {
-        hurtbox.onHitEvent -= OnHit;
+        foreach (HurtBox hurtbox in hurtboxes)
+        {
+            hurtbox.onHitEvent -= OnHit;
+        }
     }
 }

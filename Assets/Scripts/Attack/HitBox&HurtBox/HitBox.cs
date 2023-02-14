@@ -5,18 +5,19 @@ using UnityEngine.Events;
 
 public class HitBox : MonoBehaviour, IHitBoxBase
 {
-    public string hitBoxName;
+    AttackData attackData;
 
-    public AttackData attackData;
+    public IAttackBase attack;
 
     public UnityAction<HitData> onHitEvent = delegate { };
 
+    [HideInInspector]
     public string colliderTag;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        if(attack != null)
+            attackData = attack.CurrentAttack;
     }
 
     public void Hit(Transform target, HitData hitData)
@@ -24,7 +25,7 @@ public class HitBox : MonoBehaviour, IHitBoxBase
         if(target.TryGetComponent(out IHurtBoxBase hurtBox))
         {
             hurtBox.TakeDamage(hitData);
-            onHitEvent.Invoke(hitData);
+            onHitEvent?.Invoke(hitData);
         }
     }
 

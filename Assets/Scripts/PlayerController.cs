@@ -9,10 +9,6 @@ public class PlayerController : Character, IHurtResponse
     // Start is called before the first frame update
     void Start()
     {
-        idleState = new IdleState(this, 0);
-        airBorneState = new AirBorneState(this, 0);
-        SetState(idleState);
-
         playerInput = GetComponent<IInputReader>();
         InputBinding();
     }
@@ -23,26 +19,27 @@ public class PlayerController : Character, IHurtResponse
         playerInput.OnMoveEvent += OnMove;
         playerInput.OnRightDashEvent += OnRightDash;
         playerInput.OnLeftDashEvent += OnLeftDash;
+        playerInput.OnAttackEvent += OnAttack;
     }
 
     void OnMove(Vector2 input)
     {
-        CurrentState.Move(input);
+        Move(input);
     }
 
     void OnAttack(string attackName)
     {
-        CurrentState.Attack(attackName);
+        Attack(attackName);
     }
 
     void OnRightDash()
     {
-        CurrentState.RightDash();
+        RightDash();
     }
 
     void OnLeftDash()
     {
-        CurrentState.LeftDash();
+        LeftDash();
     }
 
     void UnBindInput()
@@ -50,11 +47,17 @@ public class PlayerController : Character, IHurtResponse
         playerInput.OnMoveEvent -= OnMove;
         playerInput.OnRightDashEvent -= OnRightDash;
         playerInput.OnLeftDashEvent -= OnLeftDash;
+        playerInput.OnAttackEvent -= OnAttack;
     }
     #endregion
 
     public override void Move(Vector2 input)
     {
+        if(input.y > 0.1f && movement.Grounded)
+        {
+            movement.Jump();
+            animator.Jump();
+        }
         movement.Move(input);
         animator.Move(input);
     }
@@ -63,6 +66,7 @@ public class PlayerController : Character, IHurtResponse
     {
         AttackData attackData = attack.GetAttackData(attackName);
         //play animation
+        animator.Attack(attackName);
         //TO DO: ADD INPUT COMBO
     }
 
@@ -91,7 +95,6 @@ public class PlayerController : Character, IHurtResponse
         {
             health.TakeDamage(hitData.attack.damage);
             animator.Hurt(hitData.hurtBoxPosition);
-            SetState(new HurtState(this, hitData.attack.stun));
         }
     }
 

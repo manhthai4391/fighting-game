@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Effects
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Post FX
   - Player
   - Enemy
-  - 
-  - 
+  - Hit Box
+  - Hurt Box
   - 
   - 
   - 
