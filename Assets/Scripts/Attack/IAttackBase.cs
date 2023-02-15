@@ -5,6 +5,5 @@ using UnityEngine;
 public interface IAttackBase
 {
     AttackData GetAttackData(string attackName);
-
     AttackData CurrentAttack { get; }
 }

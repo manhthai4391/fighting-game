@@ -10,4 +10,5 @@ public interface IAnimatorBase
     void RightDash();
     void Attack(string attackTrigger);
     void Hurt(HurtBoxPosition hurtBoxPosition);
+    void Block(HurtBoxPosition blockPosition);
 }

@@ -12,6 +12,9 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     float dashForce = 5f;
 
     [SerializeField]
+    bool canJump = false;
+
+    [SerializeField]
     string groundTag = "Ground";
 
     float horizontalInput = 0.0f;
@@ -32,6 +35,8 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
 
     public void Jump()
     {
+        if (!canJump)
+            return;
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         Grounded = false;
     }

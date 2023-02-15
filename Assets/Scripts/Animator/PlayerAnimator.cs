@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     readonly int horizontalFloatID = Animator.StringToHash("Horizontal");
     readonly int backDashTriggerID = Animator.StringToHash("BackDash");
     readonly int forwardDashTriggerID = Animator.StringToHash("Dash");
+    readonly int blockTriggerID = Animator.StringToHash("Block");
     readonly int hurtTriggerID = Animator.StringToHash("Hurt");
     readonly int intensityFloatID = Animator.StringToHash("Intensity");
     readonly int punchTriggerID = Animator.StringToHash("Punch");
@@ -32,6 +33,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
             animator.SetBool(moveBoolID, true);
             animator.SetFloat(horizontalFloatID, input.x);
         }
+        animator.SetFloat(verticalFloatID, input.y);
     }
 
     public void Jump()
@@ -85,6 +87,14 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
         animator.SetTrigger(hurtTriggerID);
         //LOW is 0, MIDDLE is 1, HIGH is 2
         float hitBoxVertical = (int)hurtBoxPosition;
+        animator.SetFloat(verticalFloatID, hitBoxVertical);
+    }
+
+    public void Block(HurtBoxPosition blockPosition)
+    {
+        animator.SetTrigger(blockTriggerID);
+        //same with hurt
+        float hitBoxVertical = (int)blockPosition;
         animator.SetFloat(verticalFloatID, hitBoxVertical);
     }
 }

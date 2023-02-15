@@ -53,11 +53,11 @@ public class PlayerController : Character, IHurtResponse
 
     public override void Move(Vector2 input)
     {
-        if(input.y > 0.1f && movement.Grounded)
+        /*if(input.y > 0.1f && movement.Grounded)
         {
             movement.Jump();
             animator.Jump();
-        }
+        }*/
         movement.Move(input);
         animator.Move(input);
     }
@@ -82,20 +82,25 @@ public class PlayerController : Character, IHurtResponse
 
     public void OnGotHit(HitData hitData)
     {
-        if(hitData.wasParry)
+        /*
+        //parry
+        //if()
         {
-
+            animator.Block(hitData.hurtBoxPosition);
         }
-        else if(hitData.wasBlocked)
+        //block
+        else if()
         {
             health.TakeDamage(hitData.attack.chipDamage);
-            //play block animation
+            animator.Block(hitData.hurtBoxPosition);
         }
+        //got hit
         else
         {
             health.TakeDamage(hitData.attack.damage);
             animator.Hurt(hitData.hurtBoxPosition);
         }
+        */
     }
 
     void OnDestroy()
