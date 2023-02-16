@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : Character, IHurtResponse
 {
     IInputReader playerInput;
+    InputRecorder inputRecorder;
+    PlayerGuarding guarding;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         playerInput = GetComponent<IInputReader>();
+        inputRecorder = GetComponent<InputRecorder>();
+        guarding = GetComponent<PlayerGuarding>();
         InputBinding();
     }
 
@@ -58,6 +63,7 @@ public class PlayerController : Character, IHurtResponse
             movement.Jump();
             animator.Jump();
         }*/
+        inputRecorder.Move(input);
         movement.Move(input);
         animator.Move(input);
     }
@@ -82,14 +88,13 @@ public class PlayerController : Character, IHurtResponse
 
     public void OnGotHit(HitData hitData)
     {
-        /*
-        //parry
-        //if()
+        bool blocked = guarding.CheckBlocking(transform, inputRecorder, out bool parry);
+        if (parry)
         {
             animator.Block(hitData.hurtBoxPosition);
         }
         //block
-        else if()
+        else if(blocked)
         {
             health.TakeDamage(hitData.attack.chipDamage);
             animator.Block(hitData.hurtBoxPosition);
@@ -100,7 +105,6 @@ public class PlayerController : Character, IHurtResponse
             health.TakeDamage(hitData.attack.damage);
             animator.Hurt(hitData.hurtBoxPosition);
         }
-        */
     }
 
     void OnDestroy()
