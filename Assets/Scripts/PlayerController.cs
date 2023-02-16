@@ -7,7 +7,11 @@ public class PlayerController : Character, IHurtResponse
     IInputReader playerInput;
     InputRecorder inputRecorder;
     PlayerGuarding guarding;
-    
+
+    bool IgnoreInput()
+    {
+        return IsHurt;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,11 +62,13 @@ public class PlayerController : Character, IHurtResponse
 
     public override void Move(Vector2 input)
     {
-        /*if(input.y > 0.1f && movement.Grounded)
+        if (IgnoreInput())
+            return;
+        if(input.y > 0.1f && movement.Grounded)
         {
             movement.Jump();
             animator.Jump();
-        }*/
+        }
         inputRecorder.Move(input);
         movement.Move(input);
         animator.Move(input);
@@ -70,6 +76,8 @@ public class PlayerController : Character, IHurtResponse
 
     public override void Attack(string attackName)
     {
+        if (IgnoreInput()) 
+            return;
         AttackData attackData = attack.GetAttackData(attackName);
         //play animation
         animator.Attack(attackName);
@@ -78,11 +86,15 @@ public class PlayerController : Character, IHurtResponse
 
     public override void RightDash()
     {
+        if (IgnoreInput())
+            return;
         movement.RightDash();
     }
 
     public override void LeftDash()
     {
+        if (IgnoreInput())
+            return;
         movement.LeftDash();
     }
 
@@ -105,6 +117,16 @@ public class PlayerController : Character, IHurtResponse
             health.TakeDamage(hitData.attack.damage);
             animator.Hurt(hitData.hurtBoxPosition);
         }
+    }
+
+    public override void EnterHurtState()
+    {
+        IsHurt = true;
+    }
+
+    public override void ExitHurtState()
+    {
+        IsHurt = false;
     }
 
     void OnDestroy()

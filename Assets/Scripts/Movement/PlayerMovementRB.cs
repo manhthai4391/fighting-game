@@ -2,6 +2,10 @@
 
 public class PlayerMovementRB : MonoBehaviour, IMovementBase
 {
+    public bool CannotMove { get; set; }
+
+    public bool Grounded { get; private set; }
+
     [SerializeField]
     float moveSpeed = 5f;
     [SerializeField]
@@ -20,8 +24,6 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     float horizontalInput = 0.0f;
 
     Rigidbody rb;
-
-    public bool Grounded { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
 
     public void Jump()
     {
-        if (!canJump)
+        if (!canJump || !CannotMove)
             return;
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         Grounded = false;
@@ -43,17 +45,19 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
 
     public void RightDash() 
     {
-        rb.AddForce(dashForce * Vector3.right, ForceMode.Impulse);
+        if(!CannotMove)
+            rb.AddForce(dashForce * Vector3.right, ForceMode.Impulse);
     }
 
     public void LeftDash()
     {
-        rb.AddForce(dashForce * Vector3.left, ForceMode.Impulse);
+        if(!CannotMove)
+            rb.AddForce(dashForce * Vector3.left, ForceMode.Impulse);
     }
 
     void FixedUpdate()
     {
-        if(!Mathf.Approximately(horizontalInput, 0))
+        if(!Mathf.Approximately(horizontalInput, 0) && !CannotMove)
         {
             float speed = Grounded? moveSpeed : airBorneSpeed;
             rb.MovePosition(horizontalInput * speed * Time.fixedDeltaTime * Vector3.right + transform.position);

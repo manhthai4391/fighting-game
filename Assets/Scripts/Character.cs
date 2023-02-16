@@ -11,6 +11,8 @@ public abstract class Character : MonoBehaviour
     public IMovementBase movement;
     public IAttackBase attack;
 
+    public bool IsHurt { get; protected set; }
+
     void Awake()
     {
         health = GetComponent<Health>();
@@ -37,5 +39,15 @@ public abstract class Character : MonoBehaviour
     public virtual void Attack(string attackName) 
     {
 
+    }
+
+    public virtual void EnterHurtState()
+    {
+        IsHurt = true;
+    }
+
+    public virtual void ExitHurtState()
+    {
+        IsHurt = false;
     }
 }

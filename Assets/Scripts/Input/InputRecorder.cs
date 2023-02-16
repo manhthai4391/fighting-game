@@ -51,7 +51,6 @@ public class InputRecorder : MonoBehaviour
         {
             LastDownInput = 0.0f;
         }
-
         lastInput = 0.0f;
     }
 
