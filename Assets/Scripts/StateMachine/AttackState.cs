@@ -9,6 +9,7 @@ public class AttackState : StateMachineBehaviour
     float timeToEnableMovement = 0.75f;
 
     Character character;
+    bool doneSettingMovement;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,11 +20,17 @@ public class AttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //restrict movement during attack
-        if(stateInfo.normalizedTime > timeToEnableMovement)
+        if(!doneSettingMovement)
         {
-            character.movement.CannotMove = false;
+            //restrict movement during attack
+            if (stateInfo.normalizedTime > timeToEnableMovement)
+            {
+                character.movement.CannotMove = false;
+                //caching
+                doneSettingMovement = true;
+            }
         }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

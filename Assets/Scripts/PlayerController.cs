@@ -78,7 +78,7 @@ public class PlayerController : Character, IHurtResponse
     {
         if (IgnoreInput()) 
             return;
-        AttackData attackData = attack.GetAttackData(attackName);
+        _ = attack.GetAttackData(attackName);
         //play animation
         animator.Attack(attackName);
         //TO DO: ADD INPUT COMBO
