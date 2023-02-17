@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IHurtResponse 
 {
+    void RegisterHurtBoxes();
+    void UnregisterHurtBoxes();
     void OnGotHit(HitData hitData);
 }

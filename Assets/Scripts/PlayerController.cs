@@ -20,6 +20,7 @@ public class PlayerController : Character, IHurtResponse
         inputRecorder = GetComponent<InputRecorder>();
         guarding = GetComponent<PlayerGuarding>();
         InputBinding();
+        RegisterHurtBoxes();
     }
 
     #region Input Binding
@@ -98,8 +99,27 @@ public class PlayerController : Character, IHurtResponse
         movement.LeftDash();
     }
 
+    public void RegisterHurtBoxes()
+    {
+        HurtBox[] hurtBoxes = GetComponentsInChildren<HurtBox>();
+        foreach(HurtBox hurtBox in hurtBoxes)
+        {
+            hurtBox.onHitEvent += OnGotHit;
+        }
+    }
+
+    public void UnregisterHurtBoxes()
+    {
+        HurtBox[] hurtBoxes = GetComponentsInChildren<HurtBox>(true);
+        foreach (HurtBox hurtBox in hurtBoxes)
+        {
+            hurtBox.onHitEvent -= OnGotHit;
+        }
+    }
+
     public void OnGotHit(HitData hitData)
     {
+        Debug.Log("Got hit: " + hitData.attack.damage.ToString());
         bool blocked = guarding.CheckBlocking(transform, inputRecorder, out bool parry);
         if (parry)
         {
@@ -132,5 +152,6 @@ public class PlayerController : Character, IHurtResponse
     void OnDestroy()
     {
         UnBindInput();
+        UnregisterHurtBoxes();
     }
 }
