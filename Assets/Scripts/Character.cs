@@ -16,6 +16,8 @@ public abstract class Character : MonoBehaviour
     public bool IsHurt { get; protected set; }
     public bool IsDead { get; protected set; }
 
+    protected IHitFXBase hitFX;
+
     void Awake()
     {
         health = GetComponent<Health>();
