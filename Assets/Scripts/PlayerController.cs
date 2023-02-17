@@ -6,11 +6,10 @@ public class PlayerController : Character, IHurtResponse
 {
     IInputReader playerInput;
     InputRecorder inputRecorder;
-    PlayerGuarding guarding;
 
     bool IgnoreInput()
     {
-        return IsHurt;
+        return IsHurt || IsDead;
     }
 
     // Start is called before the first frame update
@@ -18,7 +17,6 @@ public class PlayerController : Character, IHurtResponse
     {
         playerInput = GetComponent<IInputReader>();
         inputRecorder = GetComponent<InputRecorder>();
-        guarding = GetComponent<PlayerGuarding>();
         InputBinding();
         RegisterHurtBoxes();
     }
@@ -119,23 +117,11 @@ public class PlayerController : Character, IHurtResponse
 
     public void OnGotHit(HitData hitData)
     {
-        Debug.Log("Got hit: " + hitData.attack.damage.ToString());
-        bool blocked = guarding.CheckBlocking(transform, inputRecorder, out bool parry);
-        if (parry)
+        health.TakeDamage(hitData.attack.damage);
+        animator.Hurt(hitData.hurtBoxPosition);
+        if(health.CurrentHealth <= 0)
         {
-            animator.Block(hitData.hurtBoxPosition);
-        }
-        //block
-        else if(blocked)
-        {
-            health.TakeDamage(hitData.attack.chipDamage);
-            animator.Block(hitData.hurtBoxPosition);
-        }
-        //got hit
-        else
-        {
-            health.TakeDamage(hitData.attack.damage);
-            animator.Hurt(hitData.hurtBoxPosition);
+            Die();
         }
     }
 
@@ -147,6 +133,19 @@ public class PlayerController : Character, IHurtResponse
     public override void ExitHurtState()
     {
         IsHurt = false;
+    }
+
+    public override void Die()
+    {
+        IsDead = true;
+        animator.Die();
+        onCharacterDieEvent?.Invoke();
+    }
+
+    public override void Win()
+    {
+        animator.Win();
+        movement.CannotMove = true;
     }
 
     void OnDestroy()

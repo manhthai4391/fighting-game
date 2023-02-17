@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
@@ -11,7 +11,10 @@ public abstract class Character : MonoBehaviour
     public IMovementBase movement;
     public IAttackBase attack;
 
+    public UnityAction onCharacterDieEvent = delegate { };
+
     public bool IsHurt { get; protected set; }
+    public bool IsDead { get; protected set; }
 
     void Awake()
     {
@@ -49,5 +52,16 @@ public abstract class Character : MonoBehaviour
     public virtual void ExitHurtState()
     {
         IsHurt = false;
+    }
+
+    public virtual void Die()
+    {
+        onCharacterDieEvent?.Invoke();
+        IsDead = true;
+    }
+
+    public virtual void Win()
+    {
+
     }
 }

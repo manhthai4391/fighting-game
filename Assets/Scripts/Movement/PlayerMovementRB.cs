@@ -37,7 +37,7 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
 
     public void Jump()
     {
-        if (!canJump || !CannotMove)
+        if (!canJump || CannotMove)
             return;
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         Grounded = false;
@@ -57,7 +57,7 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
 
     void FixedUpdate()
     {
-        if(!Mathf.Approximately(horizontalInput, 0) && !CannotMove)
+        if(!CannotMove && !Mathf.Approximately(horizontalInput, 0))
         {
             float speed = Grounded? moveSpeed : airBorneSpeed;
             rb.MovePosition(horizontalInput * speed * Time.fixedDeltaTime * Vector3.right + transform.position);

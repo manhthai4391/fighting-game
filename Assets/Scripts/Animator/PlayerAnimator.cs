@@ -8,7 +8,6 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     readonly int horizontalFloatID = Animator.StringToHash("Horizontal");
     readonly int backDashTriggerID = Animator.StringToHash("BackDash");
     readonly int forwardDashTriggerID = Animator.StringToHash("Dash");
-    readonly int blockTriggerID = Animator.StringToHash("Block");
     readonly int hurtTriggerID = Animator.StringToHash("Hurt");
     readonly int intensityFloatID = Animator.StringToHash("Intensity");
     readonly int punchTriggerID = Animator.StringToHash("Punch");
@@ -16,10 +15,13 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
 
     Animator animator;
 
+    bool facingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        facingRight = transform.forward.x > 0;
     }
 
     public void Move(Vector2 input)
@@ -31,7 +33,14 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
         else
         {
             animator.SetBool(moveBoolID, true);
-            animator.SetFloat(horizontalFloatID, input.x);
+            if(facingRight)
+            {
+                animator.SetFloat(horizontalFloatID, input.x);
+            }
+            else
+            {
+                animator.SetFloat(horizontalFloatID, -input.x);
+            }
         }
         animator.SetFloat(verticalFloatID, input.y);
     }
@@ -90,11 +99,12 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
         animator.SetFloat(verticalFloatID, hitBoxVertical);
     }
 
-    public void Block(HurtBoxPosition blockPosition)
+    public void Die()
     {
-        animator.SetTrigger(blockTriggerID);
-        //same with hurt
-        float hitBoxVertical = (int)blockPosition;
-        animator.SetFloat(verticalFloatID, hitBoxVertical);
+        animator.SetTrigger("Die");
+    }
+    public void Win()
+    {
+        animator.SetTrigger("Win");
     }
 }
