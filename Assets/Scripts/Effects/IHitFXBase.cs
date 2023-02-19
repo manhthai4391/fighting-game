@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHitFXBase 
 {
-    void PlayFX(Vector3 postiion);
+    void PlayHitFX(HitData hitData);
 }

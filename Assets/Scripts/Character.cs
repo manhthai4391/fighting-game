@@ -12,11 +12,10 @@ public abstract class Character : MonoBehaviour
     public IAttackBase attack;
 
     public UnityAction onCharacterDieEvent = delegate { };
+    public UnityAction<HitData> onCharacterHurtEvent = delegate { };
 
     public bool IsHurt { get; protected set; }
     public bool IsDead { get; protected set; }
-
-    protected IHitFXBase hitFX;
 
     void Awake()
     {

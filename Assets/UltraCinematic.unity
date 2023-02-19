@@ -1992,7 +1992,7 @@ BoxCollider:
   m_Center: {x: 0, y: 0.775, z: 0.025}
 --- !u!95 &229776591
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2009,7 +2009,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &229776592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9542,7 +9542,7 @@ Rigidbody:
   m_CollisionDetection: 2
 --- !u!95 &802308004
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9559,7 +9559,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &802308005
 Transform:
   m_ObjectHideFlags: 0
@@ -12265,6 +12265,9 @@ GameObject:
   - component: {fileID: 1011740083}
   - component: {fileID: 1011740085}
   - component: {fileID: 1011740086}
+  - component: {fileID: 1011740089}
+  - component: {fileID: 1011740088}
+  - component: {fileID: 1011740087}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -12335,6 +12338,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 0.3
   duration: 0.5
+--- !u!114 &1011740087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011740082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e1ec825cbc34d3ebf6b10261da2985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  hitSound: {fileID: 0}
+--- !u!114 &1011740088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011740082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ca7ee43d38f496cba9e4d41579d06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: []
+--- !u!114 &1011740089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011740082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403c901819c9ff64c8e68b0951e367bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1033206151
 GameObject:
   m_ObjectHideFlags: 0
@@ -24798,7 +24840,7 @@ RectTransform:
   m_Pivot: {x: 0, y: 0}
 --- !u!95 &1897442615
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24815,7 +24857,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!225 &1897442616
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -25228,7 +25270,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 90
-  field of view: 21.930803
+  field of view: 18.805828
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -35331,7 +35373,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5866666020928089101
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -35348,7 +35390,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5866666020928089103
 MonoBehaviour:
   m_ObjectHideFlags: 0

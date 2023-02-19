@@ -19,8 +19,6 @@ public class PlayerController : Character, IHurtResponse
         inputRecorder = GetComponent<InputRecorder>();
         InputBinding();
         RegisterHurtBoxes();
-
-        hitFX = GetComponent<IHitFXBase>();
     }
 
     #region Input Binding
@@ -99,6 +97,7 @@ public class PlayerController : Character, IHurtResponse
         movement.LeftDash();
     }
 
+    #region Hurt
     public void RegisterHurtBoxes()
     {
         HurtBox[] hurtBoxes = GetComponentsInChildren<HurtBox>();
@@ -121,8 +120,8 @@ public class PlayerController : Character, IHurtResponse
     {
         health.TakeDamage(hitData.attack.damage);
         animator.Hurt(hitData.hurtBoxPosition);
-        hitFX.PlayFX(hitData.hitPoint);
-        if(health.CurrentHealth <= 0)
+        IEffectsManagerBase.Instance.OnHitEvent?.Invoke(hitData);
+        if (health.CurrentHealth <= 0)
         {
             Die();
         }
@@ -137,6 +136,7 @@ public class PlayerController : Character, IHurtResponse
     {
         IsHurt = false;
     }
+    #endregion
 
     public override void Die()
     {
