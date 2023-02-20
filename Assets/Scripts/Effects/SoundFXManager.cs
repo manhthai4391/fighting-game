@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundFXManager : MonoBehaviour, IHitFXBase
@@ -10,8 +8,19 @@ public class SoundFXManager : MonoBehaviour, IHitFXBase
     [SerializeField]
     AudioClip hitSound;
 
+    void Start()
+    {
+        EffectsManager.Instance.OnHitEvent += PlayHitFX;
+    }
+
+    private void OnDestroy()
+    {
+        EffectsManager.Instance.OnHitEvent -= PlayHitFX;
+    }
+
     public void PlayHitFX(HitData hitData)
     {
-        audioSource.PlayOneShot(hitSound);
+        float randomVolumeScale = Random.Range(0.75f, 1.0f);
+        audioSource.PlayOneShot(hitSound, randomVolumeScale);
     }
 }

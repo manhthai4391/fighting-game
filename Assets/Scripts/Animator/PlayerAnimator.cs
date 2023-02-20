@@ -102,6 +102,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     public void Die()
     {
         animator.SetTrigger("Die");
+        animator.ResetTrigger(hurtTriggerID);
     }
     public void Win()
     {

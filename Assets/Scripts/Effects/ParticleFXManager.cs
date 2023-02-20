@@ -5,17 +5,30 @@ using UnityEngine;
 public class ParticleFXManager : MonoBehaviour, IHitFXBase
 {
     [SerializeField]
-    ParticleSystem[] effects;
+    ParticleSystem[] hitEffects;
+
+    void Start() 
+    {
+        EffectsManager.Instance.OnHitEvent += PlayHitFX;
+    }
+
+    private void OnDestroy()
+    {
+        EffectsManager.Instance.OnHitEvent -= PlayHitFX;
+    }
 
     public void Play(Vector3 position)
     {
-        foreach(ParticleSystem particle in effects)
+        foreach(ParticleSystem particle in hitEffects)
         {
             if(!particle.gameObject.activeInHierarchy)
                 particle.gameObject.SetActive(true);
             particle.gameObject.transform.position = position;
-            if (!particle.isPlaying)
-                particle.Play();
+            if(particle.isPlaying)
+            {
+                particle.time = 0;
+            }
+            particle.Play();
         }
     }
 

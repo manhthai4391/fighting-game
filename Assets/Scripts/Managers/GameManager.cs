@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Character[] characters;
 
-    [SerializeField]
-    SlowMotion slowMo;
+    public UnityEvent onGameOverEvent; 
 
     private void Awake()
     {
@@ -35,21 +35,12 @@ public class GameManager : MonoBehaviour
     {
         foreach(Character character in characters)
         {
-            Debug.Log(character.IsDead);
             if(!character.IsDead)
             {
                 character.Win();
             }
             character.onCharacterDieEvent -= GameOver;
         }
-
-        slowMo.StartSlowMotion();
-        StartCoroutine(ReloadScene());
-    }
-
-    IEnumerator ReloadScene()
-    {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(0);
+        onGameOverEvent?.Invoke();
     }
 }

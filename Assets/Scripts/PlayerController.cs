@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : Character, IHurtResponse
 {
     IInputReader playerInput;
-    InputRecorder inputRecorder;
 
     bool IgnoreInput()
     {
@@ -16,7 +15,6 @@ public class PlayerController : Character, IHurtResponse
     void Start()
     {
         playerInput = GetComponent<IInputReader>();
-        inputRecorder = GetComponent<InputRecorder>();
         InputBinding();
         RegisterHurtBoxes();
     }
@@ -68,7 +66,6 @@ public class PlayerController : Character, IHurtResponse
             movement.Jump();
             animator.Jump();
         }
-        inputRecorder.Move(input);
         movement.Move(input);
         animator.Move(input);
     }
@@ -118,9 +115,11 @@ public class PlayerController : Character, IHurtResponse
 
     public void OnGotHit(HitData hitData)
     {
+        if(IsDead) 
+            return;
         health.TakeDamage(hitData.attack.damage);
         animator.Hurt(hitData.hurtBoxPosition);
-        IEffectsManagerBase.Instance.OnHitEvent?.Invoke(hitData);
+        EffectsManager.Instance.OnHitEvent?.Invoke(hitData);
         if (health.CurrentHealth <= 0)
         {
             Die();
@@ -148,7 +147,6 @@ public class PlayerController : Character, IHurtResponse
     public override void Win()
     {
         animator.Win();
-        movement.CannotMove = true;
     }
 
     void OnDestroy()

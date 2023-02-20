@@ -16,7 +16,7 @@ MonoBehaviour:
   hitboxType: 0
   intensity: 2
   attackType: 0
-  damage: 40
+  damage: 30
   stun: 1.5
   canBeBlocked: 1
   isCritical: 1
