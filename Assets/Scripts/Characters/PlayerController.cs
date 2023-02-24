@@ -75,9 +75,7 @@ public class PlayerController : Character, IHurtResponse
         if (IgnoreInput()) 
             return;
         _ = attack.GetAttackData(attackName);
-        //play animation
         animator.Attack(attackName);
-        //TO DO: ADD INPUT COMBO
     }
 
     public override void RightDash()
@@ -117,13 +115,18 @@ public class PlayerController : Character, IHurtResponse
     {
         if(IsDead) 
             return;
-        health.TakeDamage(hitData.attack.damage);
+
+        if(health != null)
+        {
+            health.TakeDamage(hitData.attack.damage);
+            if (health.CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+        
         animator.Hurt(hitData.hurtBoxPosition);
         EffectsManager.Instance.OnHitEvent?.Invoke(hitData);
-        if (health.CurrentHealth <= 0)
-        {
-            Die();
-        }
     }
 
     public override void EnterHurtState()
