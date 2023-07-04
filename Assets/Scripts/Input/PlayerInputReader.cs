@@ -16,10 +16,13 @@ public class PlayerInputReader : MonoBehaviour, IInputReader
     {
         inputActionAsset = inputActions;
         inputActionAsset.Enable();
+
         InputActionMap actionMap = inputActionAsset.FindActionMap("Gameplay");
+
         InputAction moveAction = actionMap.FindAction("MOVE");
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
+
         actionMap.FindAction("RIGHT_DASH").performed += OnRightDash;
         actionMap.FindAction("LEFT_DASH").performed += OnLeftDash;
         actionMap.FindAction("LIGHT_PUNCH").performed += OnAttack;

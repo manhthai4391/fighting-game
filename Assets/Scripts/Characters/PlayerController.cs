@@ -142,8 +142,19 @@ public class PlayerController : Character, IHurtResponse
 
     public override void Die()
     {
+        StartCoroutine(Dead());
+    }
+
+    IEnumerator Dead()
+    {
+        yield return new WaitForEndOfFrame();
         IsDead = true;
         animator.Die();
+
+        //clear movement input
+        movement.Move(Vector2.zero);
+        movement.CannotMove = true;
+
         onCharacterDieEvent?.Invoke();
     }
 

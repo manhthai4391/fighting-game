@@ -103,6 +103,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     {
         animator.SetTrigger("Die");
         animator.ResetTrigger(hurtTriggerID);
+        animator.SetBool(moveBoolID, false);
     }
     public void Win()
     {
