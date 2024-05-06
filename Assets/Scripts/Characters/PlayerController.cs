@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerController : Character, IHurtResponse
 {
-    IInputReader playerInput;
+    private IInputReader playerInput;
 
-    bool IgnoreInput()
+    private bool IgnoreInput()
     {
         return IsHurt || IsDead;
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerInput = GetComponent<IInputReader>();
         InputBinding();
@@ -20,7 +20,7 @@ public class PlayerController : Character, IHurtResponse
     }
 
     #region Input Binding
-    void InputBinding()
+    private void InputBinding()
     {
         playerInput.OnMoveEvent += OnMove;
         playerInput.OnRightDashEvent += OnRightDash;
@@ -28,27 +28,27 @@ public class PlayerController : Character, IHurtResponse
         playerInput.OnAttackEvent += OnAttack;
     }
 
-    void OnMove(Vector2 input)
+    private void OnMove(Vector2 input)
     {
         Move(input);
     }
 
-    void OnAttack(string attackName)
+    private void OnAttack(string attackName)
     {
         Attack(attackName);
     }
 
-    void OnRightDash()
+    private void OnRightDash()
     {
         RightDash();
     }
 
-    void OnLeftDash()
+    private void OnLeftDash()
     {
         LeftDash();
     }
 
-    void UnBindInput()
+    private void UnBindInput()
     {
         playerInput.OnMoveEvent -= OnMove;
         playerInput.OnRightDashEvent -= OnRightDash;
@@ -145,7 +145,7 @@ public class PlayerController : Character, IHurtResponse
         StartCoroutine(Dead());
     }
 
-    IEnumerator Dead()
+    private IEnumerator Dead()
     {
         yield return new WaitForEndOfFrame();
         IsDead = true;
@@ -163,7 +163,7 @@ public class PlayerController : Character, IHurtResponse
         animator.Win();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         UnBindInput();
         UnregisterHurtBoxes();

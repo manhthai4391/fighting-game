@@ -21,7 +21,7 @@ public enum AttackType
     KICK
 }
 
-[CreateAssetMenu(menuName = "Attack Data", fileName = "New Attack")]
+[CreateAssetMenu(menuName = "Fighting Game/Attack Data", fileName = "New Attack")]
 public class AttackData : ScriptableObject
 {
     public string attackName;

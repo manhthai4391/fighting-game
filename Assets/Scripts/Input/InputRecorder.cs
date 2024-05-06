@@ -1,86 +1,126 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputRecorder : MonoBehaviour
 {
-    public float maxTimeOut = 0.5f;
+    public float inputDelayTime = 0.5f;
 
-    public float LastUpInput { get; private set; }
-    public float LastDownInput { get; private set; }
-    public float LastLeftInput { get; private set; }
-    public float LastRightInput { get; private set; }
+    public Combo[] combos;
 
-    float lastInput = 0.0f;
-    bool isCountingDown;
+    public UnityAction<Combo> onComboExecute;
+
+    private int[] currentComboKey;
+
+    private float lastInputTime;
+
+    private bool checkExecuteCombo;
 
     private void Start()
     {
-        ResetRecord();
-    }
-
-    public void Move(Vector2 input)
-    {
-        if (input == Vector2.zero)
-            return;
-
-        Record(input);
-
-        if (!isCountingDown)
+        if(combos != null && combos.Length > 0)
         {
-            StartCoroutine(CountDown());
+            //initialize
+            currentComboKey = new int[combos.Length];
+
+            for (int i = 0; i < combos.Length; i++)
+            {
+                currentComboKey[i] = 0;
+            }
         }
     }
 
-    void Record(Vector2 input)
+    public void CheckCombo(Vector2 input)
     {
-        //TODO: RECORD INPUT
-        if(input.x > float.Epsilon)
+        for (int i = 0; i < combos.Length; i++)
         {
-            LastRightInput = 0.0f;
+            if (currentComboKey[i] < combos[i].inputCombos.Length)
+            {
+                if (CheckDirectionInput(input, combos[i].inputCombos[currentComboKey[i]]))
+                {
+                    ComboKeyMatched(i);
+                }
+            }
         }
-        else if(input.x < -float.Epsilon)
-        {
-            LastLeftInput = 0.0f;
-        }
-
-        if(input.y > float.Epsilon)
-        {
-            LastUpInput = 0.0f;
-        }
-        else if(input.y < - float.Epsilon)
-        {
-            LastDownInput = 0.0f;
-        }
-        lastInput = 0.0f;
     }
 
-    public void ResetRecord() 
+    public void CheckCombo(string input)
     {
-        LastUpInput = LastDownInput = LastLeftInput = LastRightInput = lastInput = maxTimeOut;
+        for(int i = 0; i < combos.Length; i++)
+        {
+            if (currentComboKey[i] < combos[i].inputCombos.Length)
+            {
+                if (combos[i].inputCombos[currentComboKey[i]].ToString() == input)
+                {
+                    ComboKeyMatched(i);
+                }
+                else
+                {
+                    ResetCombo(i);
+                }
+            }
+            else
+            {
+                ResetCombo(i);
+            }
+        }
     }
 
-    IEnumerator CountDown()
+    private void Update()
     {
-        isCountingDown = true;
-        while(lastInput < maxTimeOut)
+        if(checkExecuteCombo)
         {
-            lastInput += Time.deltaTime;
-
-            if (LastUpInput < maxTimeOut)
-                LastUpInput += Time.deltaTime;
-
-            if (LastDownInput < maxTimeOut)
-                LastDownInput += Time.deltaTime;
-
-            if (LastLeftInput < maxTimeOut)
-                LastLeftInput += Time.deltaTime;
-
-            if (LastRightInput < maxTimeOut)
-                LastRightInput += Time.deltaTime;
-
-            yield return null;
+            if(Time.time - lastInputTime > inputDelayTime)
+            {
+                ExecuteCombo();
+            }
         }
-        isCountingDown = false;
-        ResetRecord();
+    }
+
+    public void ExecuteCombo()
+    {
+        for(int i = 0; i < combos.Length; i++)
+        {
+            if (currentComboKey[i] == combos[i].inputCombos.Length)
+            {
+                onComboExecute?.Invoke(combos[i]);
+                break;
+            }
+        }
+    }
+
+    private bool CheckDirectionInput(Vector2 input, InputCombo comboKey)
+    {
+        bool keyMatched = false;
+        switch(comboKey)
+        {
+            case InputCombo.FORWARD:
+                break;
+            case InputCombo.BACKWARD:
+                break;
+            case InputCombo.UP:
+                break;
+            case InputCombo.DOWN:
+                break;
+            default:
+                break;
+        }
+        return keyMatched;
+    }
+
+    private void ComboKeyMatched(int comboIndex)
+    {
+        currentComboKey[comboIndex]++;
+        if (currentComboKey[comboIndex] == combos[comboIndex].inputCombos.Length)
+        {
+            checkExecuteCombo = true;
+            lastInputTime = Time.time;
+        }
+    }
+
+    private void ResetCombo(int comboIndex)
+    {
+        currentComboKey[comboIndex] = 0;
     }
 }
