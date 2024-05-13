@@ -33,7 +33,6 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     public void Move(Vector2 input)
     {
         horizontalInput = input.x;
-        Debug.Log(input.x);
     }
 
     public void Jump()
@@ -61,7 +60,6 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
         if(!CannotMove && !Mathf.Approximately(horizontalInput, 0))
         {
             float speed = Grounded? moveSpeed : airBorneSpeed;
-            Debug.Log(speed);
             rb.MovePosition(horizontalInput * speed * Time.fixedDeltaTime * Vector3.right + transform.position);
         }
     }

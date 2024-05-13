@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HurtState : StateMachineBehaviour
 {
-    Character character;
+    private Character _character;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        character = animator.GetComponent<Character>();
-        character.movement.CannotMove = true;
+        _character = animator.transform.parent.GetComponent<Character>();
+        _character.movement.CannotMove = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,7 +21,7 @@ public class HurtState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        character.movement.CannotMove = false;
+        _character.movement.CannotMove = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
