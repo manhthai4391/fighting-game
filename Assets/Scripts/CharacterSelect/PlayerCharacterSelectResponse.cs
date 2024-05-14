@@ -16,7 +16,7 @@ public class PlayerCharacterSelectResponse : MonoBehaviour
     {
         string key = selectedCharacterPlayerPrefKey + playerIndex;
         //int selectedCharacterID = PlayerPrefs.GetInt(key, 0);
-        int selectedCharacterID = 1;
+        int selectedCharacterID = 0;
 
         for (int i = 0; i < characters.Length; i++)
         {
