@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IAttackBase
 {
-    [SerializeField]
-    AttackData[] attacks;
-
     public AttackData CurrentAttack { get; private set; }
 
-    Dictionary<string, AttackData> attackList;
+    [SerializeField]
+    private AttackData[] attacks;
 
     [SerializeField]
-    HitBox[] hitBoxes;
+    private HitBox[] hitBoxes;
+
+    private Dictionary<string, AttackData> _attackDictionary;
 
     // Start is called before the first frame update
     void Start()
     {
-        attackList = new Dictionary<string, AttackData>();
+        _attackDictionary = new Dictionary<string, AttackData>();
         foreach(var attack in attacks)
         {
-            attackList.Add(attack.attackName, attack);
+            _attackDictionary.Add(attack.attackName, attack);
         }
         attacks = null;
 
@@ -34,11 +34,11 @@ public class PlayerAttack : MonoBehaviour, IAttackBase
 
     public AttackData GetAttackData(string attackName)
     {
-        if (!attackList.ContainsKey(attackName))
+        if (!_attackDictionary.ContainsKey(attackName))
             return default;
         else 
         {
-            CurrentAttack = attackList[attackName];
+            CurrentAttack = _attackDictionary[attackName];
             return CurrentAttack;
         } 
     }

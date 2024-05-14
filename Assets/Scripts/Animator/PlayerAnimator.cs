@@ -2,23 +2,23 @@
 
 public class PlayerAnimator : MonoBehaviour, IAnimatorBase
 {
-    readonly int moveBoolID = Animator.StringToHash("Move");
-    readonly int jumpTriggerID = Animator.StringToHash("Jump");
-    readonly int verticalFloatID = Animator.StringToHash("Vertical");
-    readonly int horizontalFloatID = Animator.StringToHash("Horizontal");
-    readonly int backDashTriggerID = Animator.StringToHash("BackDash");
-    readonly int forwardDashTriggerID = Animator.StringToHash("Dash");
-    readonly int hurtTriggerID = Animator.StringToHash("Hurt");
-    readonly int intensityFloatID = Animator.StringToHash("Intensity");
-    readonly int punchTriggerID = Animator.StringToHash("Punch");
-    readonly int kickTriggerID = Animator.StringToHash("Kick");
+    private readonly int moveBoolID = Animator.StringToHash("Move");
+    private readonly int jumpTriggerID = Animator.StringToHash("Jump");
+    private readonly int verticalFloatID = Animator.StringToHash("Vertical");
+    private readonly int horizontalFloatID = Animator.StringToHash("Horizontal");
+    private readonly int backDashTriggerID = Animator.StringToHash("BackDash");
+    private readonly int forwardDashTriggerID = Animator.StringToHash("Dash");
+    private readonly int hurtTriggerID = Animator.StringToHash("Hurt");
+    private readonly int intensityFloatID = Animator.StringToHash("Intensity");
+    private readonly int punchTriggerID = Animator.StringToHash("Punch");
+    private readonly int kickTriggerID = Animator.StringToHash("Kick");
 
-    Animator animator;
+    private Animator animator;
 
-    bool facingRight = true;
+    private bool facingRight = true;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         facingRight = transform.forward.x > 0;

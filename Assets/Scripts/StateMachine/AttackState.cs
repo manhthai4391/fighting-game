@@ -6,28 +6,28 @@ public class AttackState : StateMachineBehaviour
 {
     [SerializeField]
     [Range(0f, 1f)]
-    float timeToEnableMovement = 0.75f;
+    private float timeToEnableMovement = 0.75f;
 
-    Character character;
-    bool doneSettingMovement;
+    private Character _character;
+    private bool _doneSettingMovement;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        character = animator.GetComponent<Character>();
-        character.movement.CannotMove = true;
+        _character = animator.GetComponent<Character>();
+        _character.movement.CannotMove = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(!doneSettingMovement)
+        if(!_doneSettingMovement)
         {
             //restrict movement during attack
             if (stateInfo.normalizedTime > timeToEnableMovement)
             {
-                character.movement.CannotMove = false;
+                _character.movement.CannotMove = false;
                 //caching
-                doneSettingMovement = true;
+                _doneSettingMovement = true;
             }
         }
         
@@ -36,7 +36,7 @@ public class AttackState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        character.movement.CannotMove = false;
+        _character.movement.CannotMove = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
