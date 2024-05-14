@@ -2,12 +2,6 @@
 
 public class PlayerAnimator : MonoBehaviour, IAnimatorBase
 {
-    [SerializeField]
-    private int playerIndex = 0;
-
-    [SerializeField]
-    private Animator[] charactersAnimator;
-
     private readonly int moveBoolID = Animator.StringToHash("Move");
     private readonly int jumpTriggerID = Animator.StringToHash("Jump");
     private readonly int verticalFloatID = Animator.StringToHash("Vertical");
@@ -19,8 +13,6 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     private readonly int punchTriggerID = Animator.StringToHash("Punch");
     private readonly int kickTriggerID = Animator.StringToHash("Kick");
 
-    private const string selectedCharacterPlayerPrefKey = "SELECTED_CHARACTER_PLAYER_";
-
     private Animator animator;
 
     private bool facingRight = true;
@@ -28,15 +20,7 @@ public class PlayerAnimator : MonoBehaviour, IAnimatorBase
     // Start is called before the first frame update
     private void Start()
     {
-        string key = selectedCharacterPlayerPrefKey + playerIndex;
-        int selectedCharacterID = PlayerPrefs.GetInt(key, 0);
-
-        for(int i = 0; i < charactersAnimator.Length; i++)
-        {
-            charactersAnimator[i].gameObject.SetActive(i == selectedCharacterID);
-        }
-        animator = charactersAnimator[selectedCharacterID];
-
+        animator = GetComponent<Animator>();
         facingRight = transform.forward.x > 0;
     }
 
