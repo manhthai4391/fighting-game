@@ -64,8 +64,15 @@ public class PlayerInputReader : MonoBehaviour, IInputReader
     {
         if (context.interaction is MultiTapInteraction)
         {
-            OnLeftDashEvent?.Invoke();
-            return;
+            if(context.phase == InputActionPhase.Performed)
+            {
+                OnLeftDashEvent?.Invoke();
+                return;
+            }
+            else if(context.phase == InputActionPhase.Canceled)
+            {
+                OnStopMovingEvent?.Invoke();
+            }  
         }
         else
         {
@@ -85,8 +92,15 @@ public class PlayerInputReader : MonoBehaviour, IInputReader
     {
         if (context.interaction is MultiTapInteraction)
         {
-            OnRightDashEvent?.Invoke();
-            return;
+            if(context.phase == InputActionPhase.Performed)
+            {
+                OnRightDashEvent?.Invoke();
+                return;
+            }
+            else if(context.phase == InputActionPhase.Canceled)
+            {
+                OnStopMovingEvent?.Invoke();
+            } 
         }
         else
         {
