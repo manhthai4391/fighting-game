@@ -6,13 +6,15 @@ using UnityEngine.Events;
 
 public interface IInputReader
 {
-    UnityAction<Vector2> OnMoveEvent { get; set; }
+    UnityAction OnMoveLeftEvent { get; set; }
+    UnityAction OnMoveRightEvent { get; set; }
+    UnityAction OnStopMovingEvent { get; set; }
     UnityAction OnLeftDashEvent { get; set; }
     UnityAction OnRightDashEvent { get; set; }
     UnityAction<string> OnAttackEvent { get; set; }
 
-    void OnMove(InputAction.CallbackContext context);
-    void OnLeftDash(InputAction.CallbackContext context);
-    void OnRightDash(InputAction.CallbackContext context);
+    void Initialize(InputActionMap actionMap, int playerIndex);
+    void OnMoveLeft(InputAction.CallbackContext context);
+    void OnMoveRight(InputAction.CallbackContext context);
     void OnAttack(InputAction.CallbackContext context);
 }

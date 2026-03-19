@@ -22,15 +22,35 @@ public class PlayerController : Character, IHurtResponse
     #region Input Binding
     private void InputBinding()
     {
-        playerInput.OnMoveEvent += OnMove;
+        playerInput.OnMoveLeftEvent += OnMoveLeft;
+        playerInput.OnMoveRightEvent += OnMoveRight;
+        playerInput.OnStopMovingEvent += OnStopMoving;
         playerInput.OnRightDashEvent += OnRightDash;
         playerInput.OnLeftDashEvent += OnLeftDash;
         playerInput.OnAttackEvent += OnAttack;
     }
 
-    private void OnMove(Vector2 input)
+    private void OnMoveLeft()
     {
-        Move(input);
+        if (IgnoreInput())
+            return;
+        movement.MoveLeft();
+        animator.Move(Vector2.left);
+    }
+
+    private void OnMoveRight()
+    {
+        if (IgnoreInput())
+            return;
+        movement.MoveRight();
+        animator.Move(Vector2.right);
+    }
+    private void OnStopMoving()
+    {
+        if (IgnoreInput())
+            return;
+        movement.StopMoving();
+        animator.Move(Vector2.zero);
     }
 
     private void OnAttack(string attackName)
@@ -50,25 +70,14 @@ public class PlayerController : Character, IHurtResponse
 
     private void UnBindInput()
     {
-        playerInput.OnMoveEvent -= OnMove;
+        playerInput.OnMoveLeftEvent -= OnMoveLeft;
+        playerInput.OnMoveRightEvent -= OnMoveRight;
+        playerInput.OnStopMovingEvent -= OnStopMoving;
         playerInput.OnRightDashEvent -= OnRightDash;
         playerInput.OnLeftDashEvent -= OnLeftDash;
         playerInput.OnAttackEvent -= OnAttack;
     }
     #endregion
-
-    public override void Move(Vector2 input)
-    {
-        if (IgnoreInput())
-            return;
-        if(input.y > 0.1f && movement.Grounded)
-        {
-            movement.Jump();
-            animator.Jump();
-        }
-        movement.Move(input);
-        animator.Move(input);
-    }
 
     public override void Attack(string attackName)
     {
@@ -152,7 +161,7 @@ public class PlayerController : Character, IHurtResponse
         animator.Die();
 
         //clear movement input
-        movement.Move(Vector2.zero);
+        movement.StopMoving();
         movement.CannotMove = true;
 
         onCharacterDieEvent?.Invoke();

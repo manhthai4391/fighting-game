@@ -6,82 +6,145 @@
             "id": "7998cc26-0cbc-4e3d-b81a-aaa0feaae1b5",
             "actions": [
                 {
-                    "name": "MOVE",
-                    "type": "Value",
-                    "id": "52f5f604-dfb7-4439-868b-f1c376ae4f05",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "RIGHT_DASH",
-                    "type": "Button",
-                    "id": "f3864ff2-df3a-4f3d-861c-b8c1634d2eb9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "LEFT_DASH",
-                    "type": "Button",
+                    "name": "PLAYER_1_MOVE_LEFT",
+                    "type": "PassThrough",
                     "id": "1c71a525-bc13-4084-b535-a404fd44cf55",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "MultiTap",
+                    "interactions": "Press,MultiTap",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LIGHT_PUNCH",
+                    "name": "PLAYER_1_MOVE_RIGHT",
+                    "type": "PassThrough",
+                    "id": "f3864ff2-df3a-4f3d-861c-b8c1634d2eb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_1_LIGHT_PUNCH",
                     "type": "Button",
                     "id": "944c78ae-1e35-46bf-90da-c2fe291bcfc0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LIGHT_KICK",
+                    "name": "PLAYER_1_LIGHT_KICK",
                     "type": "Button",
                     "id": "cae4fbfc-20d5-4110-a57e-aa0eae21f56d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MEDIUM_PUNCH",
+                    "name": "PLAYER_1_MEDIUM_PUNCH",
                     "type": "Button",
                     "id": "22811e09-0e40-469a-8359-e70ed6ca09e1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MEDIUM_KICK",
+                    "name": "PLAYER_1_MEDIUM_KICK",
                     "type": "Button",
                     "id": "7430a855-b3a3-4eeb-a8b4-eaea1fb73898",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HEAVY_PUNCH",
+                    "name": "PLAYER_1_HEAVY_PUNCH",
                     "type": "Button",
                     "id": "76f55058-3497-40f0-be0e-e13db423b785",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HEAVY_KICK",
+                    "name": "PLAYER_1_HEAVY_KICK",
                     "type": "Button",
                     "id": "4066908d-0604-4d5e-8f2c-8d6e6533593b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_MOVE_LEFT",
+                    "type": "PassThrough",
+                    "id": "6f4af081-cb53-42e3-a9b5-efe285890a0b",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_MOVE_RIGHT",
+                    "type": "PassThrough",
+                    "id": "9cc09f5f-b2df-428c-93ca-ab5a8e0f8e79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_LIGHT_KICK",
+                    "type": "Button",
+                    "id": "f11b6555-18cf-41e9-afb5-b371f12ed4cb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_LIGHT_PUNCH",
+                    "type": "Button",
+                    "id": "37e99421-756b-4ced-831b-64185f7ce040",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_MEDIUM_PUNCH",
+                    "type": "Button",
+                    "id": "379be78e-dd68-465e-9833-6d573cb3cdb3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_MEDIUM_KICK",
+                    "type": "Button",
+                    "id": "e0858681-fc6e-4cd6-9151-98d5ba608499",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_HEAVY_PUNCH",
+                    "type": "Button",
+                    "id": "c76d312f-ce2f-43a0-bc5d-2c84bc24dad0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PLAYER_2_HEAVY_KICK",
+                    "type": "Button",
+                    "id": "b1c51311-d629-4522-9af6-5d1cd9f50761",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,78 +153,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "978bfe49-cc26-4a3d-ab7b-7d7a29327403",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "MOVE",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "WASD",
-                    "id": "00ca640b-d935-4593-8157-c05846ea39b3",
-                    "path": "Dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MOVE",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "MOVE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "320bffee-a40b-4347-ac70-c210eb8bc73a",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "MOVE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "d2581a9b-1d11-4566-b27d-b92aff5fabbc",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "MOVE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "fcfe95b8-67b9-4526-84b5-5d0bc98d6400",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "MOVE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "LIGHT_PUNCH",
+                    "action": "PLAYER_1_LIGHT_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -172,7 +169,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LIGHT_PUNCH",
+                    "action": "PLAYER_1_LIGHT_PUNCH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "095393ce-88b0-4d30-8413-741243d7c490",
+                    "path": "<Keyboard>/numpad1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PLAYER_2_LIGHT_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -183,7 +191,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LIGHT_KICK",
+                    "action": "PLAYER_1_LIGHT_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -194,7 +202,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "LIGHT_KICK",
+                    "action": "PLAYER_1_LIGHT_KICK",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a9a4a5f-0147-4501-9cec-e9eafce2bef1",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_LIGHT_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -205,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "MEDIUM_PUNCH",
+                    "action": "PLAYER_1_MEDIUM_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -216,7 +235,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MEDIUM_PUNCH",
+                    "action": "PLAYER_1_MEDIUM_PUNCH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b40bac0-5226-4269-92d3-14b24c5bd4d5",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_MEDIUM_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -227,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MEDIUM_KICK",
+                    "action": "PLAYER_1_MEDIUM_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -238,7 +268,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MEDIUM_KICK",
+                    "action": "PLAYER_1_MEDIUM_KICK",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb5090af-6dca-4815-b0c7-fbee45cf7ad7",
+                    "path": "<Keyboard>/numpad5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PLAYER_2_MEDIUM_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -249,7 +290,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "RIGHT_DASH",
+                    "action": "PLAYER_1_MOVE_RIGHT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -260,7 +301,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "RIGHT_DASH",
+                    "action": "PLAYER_1_MOVE_RIGHT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "394ca980-8291-4464-af96-4fa3c7a94d3c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_MOVE_RIGHT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -271,7 +323,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "LEFT_DASH",
+                    "action": "PLAYER_1_MOVE_LEFT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -282,7 +334,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LEFT_DASH",
+                    "action": "PLAYER_1_MOVE_LEFT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "651c2c70-e84a-40e3-a0f2-7e77385d2a41",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_MOVE_LEFT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -293,7 +356,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "HEAVY_PUNCH",
+                    "action": "PLAYER_1_HEAVY_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -304,7 +367,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "HEAVY_PUNCH",
+                    "action": "PLAYER_1_HEAVY_PUNCH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8db278f0-77f4-42a0-b72d-c2bce4b9d1ec",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_HEAVY_PUNCH",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -315,7 +389,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "HEAVY_KICK",
+                    "action": "PLAYER_1_HEAVY_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,7 +400,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "HEAVY_KICK",
+                    "action": "PLAYER_1_HEAVY_KICK",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba7dd4ee-a315-4f0e-92b9-cbde2b872a3a",
+                    "path": "<Keyboard>/numpad6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PLAYER_2_HEAVY_KICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

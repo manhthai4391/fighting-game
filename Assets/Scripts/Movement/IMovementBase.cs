@@ -7,6 +7,9 @@ public interface IMovementBase
     bool CannotMove { get; set; }
     bool Grounded { get; }
     void Move(Vector2 input);
+    void MoveLeft();
+    void MoveRight();
+    void StopMoving();
     void Jump();
     void LeftDash();
     void RightDash();

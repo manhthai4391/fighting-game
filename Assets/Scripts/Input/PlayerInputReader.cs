@@ -5,75 +5,110 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerInputReader : MonoBehaviour, IInputReader
 {
-    public InputActionAsset inputActionAsset;
-
-    public UnityAction<Vector2> OnMoveEvent { get; set; }
+    private string _surfix;
+    public UnityAction OnMoveLeftEvent { get; set; }
+    public UnityAction OnMoveRightEvent { get; set; }
+    public UnityAction OnStopMovingEvent { get; set; }
     public UnityAction OnLeftDashEvent { get; set; }
     public UnityAction OnRightDashEvent { get; set; }
     public UnityAction<string> OnAttackEvent { get; set; }
 
-    public void Initialize(InputActionAsset inputActions)
+    public string player1Surfix = "PLAYER_1_";
+
+    public string player2Surfix = "PLAYER_2_";
+
+    public string moveLeftActionName = "MOVE_LEFT";
+
+    public string moveRightActionName = "MOVE_RIGHT";
+
+    public string lightPunchActionName = "LIGHT_PUNCH";
+
+    public string lightKickActionName = "LIGHT_KICK";
+
+    public string mediumPunchActionName = "MEDIUM_PUNCH";
+
+    public string mediumKickActionName = "MEDIUM_KICK";
+
+    public string heavyPunchActionName = "HEAVY_PUNCH";
+
+    public string heavyKickActionName = "HEAVY_KICK";
+
+    public void Initialize(InputActionMap actionMap, int playerIndex)
     {
-        inputActionAsset = inputActions;
-        inputActionAsset.Enable();
+        _surfix = playerIndex == 0 ? player1Surfix : player2Surfix;
 
-        InputActionMap actionMap = inputActionAsset.FindActionMap("Gameplay");
+        InputAction moveleftAction = actionMap.FindAction(_surfix + moveLeftActionName);
+        InputAction moveRightAction = actionMap.FindAction(_surfix + moveRightActionName);
+        InputAction lightPunchAction = actionMap.FindAction(_surfix + lightPunchActionName);
+        InputAction lightKickAction = actionMap.FindAction(_surfix + lightKickActionName);
+        InputAction mediumPunchAction = actionMap.FindAction(_surfix + mediumPunchActionName);
+        InputAction mediumKickAction = actionMap.FindAction(_surfix + mediumKickActionName);
+        InputAction heavyPunchAction = actionMap.FindAction(_surfix + heavyPunchActionName);
+        InputAction heavyKickAction = actionMap.FindAction(_surfix + heavyKickActionName);
 
-        InputAction moveAction = actionMap.FindAction("MOVE");
-        moveAction.performed += OnMove;
-        moveAction.canceled += OnMove;
+        moveleftAction.performed += OnMoveLeft;
+        moveRightAction.performed += OnMoveRight;
 
-        actionMap.FindAction("RIGHT_DASH").performed += OnRightDash;
-        actionMap.FindAction("LEFT_DASH").performed += OnLeftDash;
-        actionMap.FindAction("LIGHT_PUNCH").performed += OnAttack;
-        actionMap.FindAction("LIGHT_KICK").performed += OnAttack;
-        actionMap.FindAction("MEDIUM_PUNCH").performed += OnAttack;
-        actionMap.FindAction("MEDIUM_KICK").performed += OnAttack;
-        actionMap.FindAction("HEAVY_PUNCH").performed += OnAttack;
-        actionMap.FindAction("HEAVY_KICK").performed += OnAttack;
+        moveleftAction.canceled += OnMoveLeft;
+        moveRightAction.canceled += OnMoveRight;
+
+        lightPunchAction.performed += OnAttack;
+        lightKickAction.performed += OnAttack;
+        mediumPunchAction.performed += OnAttack;
+        mediumKickAction.performed += OnAttack;
+        heavyPunchAction.performed += OnAttack;
+        heavyKickAction.performed += OnAttack;
     }
 
-    private void Start()
-    {
-        Initialize(inputActionAsset);
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        if(context.phase == InputActionPhase.Performed)
-        {
-            OnMoveEvent?.Invoke(context.ReadValue<Vector2>());
-        }
-        else if(context.phase == InputActionPhase.Canceled)
-        {
-            OnMoveEvent?.Invoke(Vector2.zero);
-        }
-    }
-
-    public void OnLeftDash(InputAction.CallbackContext context)
+    public void OnMoveLeft(InputAction.CallbackContext context)
     {
         if (context.interaction is MultiTapInteraction)
         {
             OnLeftDashEvent?.Invoke();
+            return;
         }
+        else
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                OnMoveLeftEvent?.Invoke();
+                return;
+            }
+            else if(context.phase == InputActionPhase.Canceled)
+            {
+                OnStopMovingEvent?.Invoke();
+            }  
+        } 
     }
 
-    public void OnRightDash(InputAction.CallbackContext context)
+    public void OnMoveRight(InputAction.CallbackContext context)
     {
         if (context.interaction is MultiTapInteraction)
         {
             OnRightDashEvent?.Invoke();
+            return;
+        }
+        else
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                OnMoveRightEvent?.Invoke();
+                return;
+            }
+            else if(context.phase == InputActionPhase.Canceled)
+            {
+                OnStopMovingEvent?.Invoke();
+            } 
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        OnAttackEvent?.Invoke(context.action.name);
+        OnAttackEvent?.Invoke(GetAttackName(context.action.name));
     }
 
-    private void OnDestroy()
+    private string GetAttackName(string actionName)
     {
-        inputActionAsset.Disable();
-        inputActionAsset = null;
+        return actionName.Remove(0, _surfix.Length);
     }
 }

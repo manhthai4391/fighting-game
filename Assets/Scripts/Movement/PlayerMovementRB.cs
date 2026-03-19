@@ -35,6 +35,21 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
         horizontalInput = input.x;
     }
 
+    public void MoveLeft()
+    {
+        horizontalInput = -1;
+    }
+
+    public void MoveRight()
+    {
+        horizontalInput = 1;
+    }
+
+    public void StopMoving()
+    {
+        horizontalInput = 0;
+    }
+
     public void Jump()
     {
         if (!canJump || CannotMove)

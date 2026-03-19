@@ -18,7 +18,7 @@
                     "name": "RIGHT_DASH",
                     "type": "Button",
                     "id": "f3864ff2-df3a-4f3d-861c-b8c1634d2eb9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "MultiTap",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "LEFT_DASH",
                     "type": "Button",
                     "id": "1c71a525-bc13-4084-b535-a404fd44cf55",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "MultiTap",
                     "initialStateCheck": false
@@ -36,7 +36,7 @@
                     "name": "LIGHT_PUNCH",
                     "type": "Button",
                     "id": "944c78ae-1e35-46bf-90da-c2fe291bcfc0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -45,7 +45,7 @@
                     "name": "LIGHT_KICK",
                     "type": "Button",
                     "id": "cae4fbfc-20d5-4110-a57e-aa0eae21f56d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -54,7 +54,7 @@
                     "name": "MEDIUM_PUNCH",
                     "type": "Button",
                     "id": "22811e09-0e40-469a-8359-e70ed6ca09e1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,7 +63,7 @@
                     "name": "MEDIUM_KICK",
                     "type": "Button",
                     "id": "7430a855-b3a3-4eeb-a8b4-eaea1fb73898",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -72,7 +72,7 @@
                     "name": "HEAVY_PUNCH",
                     "type": "Button",
                     "id": "76f55058-3497-40f0-be0e-e13db423b785",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -81,7 +81,7 @@
                     "name": "HEAVY_KICK",
                     "type": "Button",
                     "id": "4066908d-0604-4d5e-8f2c-8d6e6533593b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]
-    Character[] characters;
+    public Character[] characters;
 
     public UnityEvent onGameOverEvent; 
 
