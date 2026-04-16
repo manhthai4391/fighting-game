@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class ProgressBar : MonoBehaviour
 {
     [SerializeField]
-    Slider slider;
+    [FormerlySerializedAs("slider")]
+    private Slider _slider;
 
     public void UpdateProgress(float progress)
     {
-        slider.value = progress;
+        _slider.value = progress;
     }
 }

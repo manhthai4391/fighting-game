@@ -8,20 +8,20 @@
             "actions": [
                 {
                     "name": "PLAYER_1_MOVE_LEFT",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "1c71a525-bc13-4084-b535-a404fd44cf55",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2),MultiTap",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "PLAYER_1_MOVE_RIGHT",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "f3864ff2-df3a-4f3d-861c-b8c1634d2eb9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2),MultiTap",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -80,20 +80,20 @@
                 },
                 {
                     "name": "PLAYER_2_MOVE_LEFT",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "6f4af081-cb53-42e3-a9b5-efe285890a0b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2),MultiTap",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "PLAYER_2_MOVE_RIGHT",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "9cc09f5f-b2df-428c-93ca-ab5a8e0f8e79",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2),MultiTap",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {

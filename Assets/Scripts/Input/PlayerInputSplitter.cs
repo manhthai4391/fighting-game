@@ -14,12 +14,12 @@ public class PlayerInputSplitter : MonoBehaviour
         InputActionAsset.Enable();
         InputActionMap actionMap = InputActionAsset.FindActionMap(actionMapName);
 
-        if(GameManager.Instance.characters != null && GameManager.Instance.characters.Length > 0)
+        if(GameManager.Instance.Characters != null && GameManager.Instance.Characters.Length > 0)
         {
-            inputReaders = new IInputReader[GameManager.Instance.characters.Length];
-            for(int i = 0; i < GameManager.Instance.characters.Length; i++)
+            inputReaders = new IInputReader[GameManager.Instance.Characters.Length];
+            for(int i = 0; i < GameManager.Instance.Characters.Length; i++)
             {
-                inputReaders[i] = GameManager.Instance.characters[i].GetComponent<IInputReader>();
+                inputReaders[i] = GameManager.Instance.Characters[i].GetComponent<IInputReader>();
             }
         }
         for(int i = 0; i < inputReaders.Length; i++)

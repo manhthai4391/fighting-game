@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class HitBox : MonoBehaviour, IHitBoxBase
 {
-    AttackData attackData;
+    [FormerlySerializedAs("attack")]
+    public IAttackBase Attack;
 
-    public IAttackBase attack;
-
-    public UnityAction<HitData> onHitEvent = delegate { };
+    [FormerlySerializedAs("onHitEvent")]
+    public UnityAction<HitData> OnHitEvent = delegate { };
 
     [HideInInspector]
-    public string colliderTag;
+    [FormerlySerializedAs("colliderTag")]
+    public string ColliderTag;
+
+    private AttackData _attackData;
 
     private void OnEnable()
     {
-        if(attack != null)
-            attackData = attack.CurrentAttack;
+        if(Attack != null)
+            _attackData = Attack.CurrentAttack;
     }
 
     public void Hit(Transform target, HitData hitData)
@@ -25,19 +29,19 @@ public class HitBox : MonoBehaviour, IHitBoxBase
         if(target.TryGetComponent(out IHurtBoxBase hurtBox))
         {
             hurtBox.TakeDamage(hitData);
-            onHitEvent?.Invoke(hitData);
+            OnHitEvent?.Invoke(hitData);
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(colliderTag))
+        if (other.gameObject.CompareTag(ColliderTag))
             return;
 
         HitData data = new HitData();
-        data.hitPoint = other.ClosestPoint(transform.position);
-        data.attack = attackData;
-        data.hurtBoxTransform = other.transform;
+        data.HitPoint = other.ClosestPoint(transform.position);
+        data.Attack = _attackData;
+        data.HurtBoxTransform = other.transform;
         Hit(other.transform, data);
     }
 }

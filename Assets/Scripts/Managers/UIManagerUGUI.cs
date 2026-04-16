@@ -2,39 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class UIManagerUGUI : UIManagerBase
 {
     [SerializeField]
-    Image[] healthBars;
+    [FormerlySerializedAs("healthBars")]
+    private Image[] _healthBars;
 
     public override void RegisterHealthSliderChangeEvent()
     {
         int i = 0;
-        foreach (Health health in healths)
+        foreach (Health health in Healths)
         {
-            Image healthBar = healthBars[i];
+            Image healthBar = _healthBars[i];
             healthBar.fillAmount = 1;
-            health.onHealthValueChange += UpdateHealthSlider;
+            health.OnHealthValueChange += UpdateHealthSlider;
             i++;
         }
     }
 
-    void UpdateHealthSlider() 
+    private void UpdateHealthSlider() 
     {
         int i = 0;
-        foreach (Image healthBar in healthBars)
+        foreach (Image healthBar in _healthBars)
         {
-            healthBar.fillAmount = (float)healths[i].CurrentHealth / (float)healths[i].maxHealth;
+            healthBar.fillAmount = (float)Healths[i].CurrentHealth / (float)Healths[i].MaxHealth;
             i++;
         }
     }
 
     public override void UnregisterHealthSliderChangeEvent()
     { 
-        foreach(Health health in healths)
+        foreach(Health health in Healths)
         {
-            health.onHealthValueChange -= UpdateHealthSlider;
+            health.OnHealthValueChange -= UpdateHealthSlider;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovementRB : MonoBehaviour, IMovementBase
 {
@@ -7,81 +8,104 @@ public class PlayerMovementRB : MonoBehaviour, IMovementBase
     public bool Grounded { get; private set; }
 
     [SerializeField]
-    float moveSpeed = 5f;
+    [FormerlySerializedAs("moveSpeed")]
+    private float _moveSpeed = 5f;
     [SerializeField]
-    float jumpForce = 3f;
+    [FormerlySerializedAs("jumpForce")]
+    private float _jumpForce = 3f;
     [SerializeField]
-    float airBorneSpeed = 2.5f;
+    [FormerlySerializedAs("airBorneSpeed")]
+    private float _airBorneSpeed = 2.5f;
     [SerializeField]
-    float dashForce = 5f;
+    [FormerlySerializedAs("dashForce")]
+    private float _dashForce = 5f;
 
     [SerializeField]
-    bool canJump = false;
+    private float _dashCooldown = 1f;
 
     [SerializeField]
-    string groundTag = "Ground";
+    [FormerlySerializedAs("canJump")]
+    private bool _canJump = false;
 
-    float horizontalInput = 0.0f;
+    [SerializeField]
+    [FormerlySerializedAs("groundTag")]
+    private string _groundTag = "Ground";
 
-    Rigidbody rb;
+    private float _horizontalInput = 0.0f;
+
+    private float _lastDashTime = -Mathf.Infinity;
+
+    private Rigidbody _rb;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     public void Move(Vector2 input)
     {
-        horizontalInput = input.x;
+        _horizontalInput = input.x;
     }
 
     public void MoveLeft()
     {
-        horizontalInput = -1;
+        _horizontalInput = -1;
     }
 
     public void MoveRight()
     {
-        horizontalInput = 1;
+        _horizontalInput = 1;
     }
 
     public void StopMoving()
     {
-        horizontalInput = 0;
+        _horizontalInput = 0;
     }
 
     public void Jump()
     {
-        if (!canJump || CannotMove)
+        if (!_canJump || CannotMove)
             return;
-        rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        _rb.AddForce(_jumpForce * Vector3.up, ForceMode.Impulse);
         Grounded = false;
     }
 
     public void RightDash() 
     {
-        if(!CannotMove)
-            rb.AddForce(dashForce * Vector3.right, ForceMode.Impulse);
+        if(CannotMove)
+            return;
+
+        if(Time.time - _lastDashTime < _dashCooldown)
+            return;
+
+        _lastDashTime = Time.time;
+        _rb.AddForce(_dashForce * Vector3.right, ForceMode.Impulse);
     }
 
     public void LeftDash()
     {
-        if(!CannotMove)
-            rb.AddForce(dashForce * Vector3.left, ForceMode.Impulse);
+        if(CannotMove)
+            return;
+
+        if(Time.time - _lastDashTime < _dashCooldown)
+            return;
+
+        _lastDashTime = Time.time;
+        _rb.AddForce(_dashForce * Vector3.left, ForceMode.Impulse);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if(!CannotMove && !Mathf.Approximately(horizontalInput, 0))
+        if(!CannotMove && !Mathf.Approximately(_horizontalInput, 0))
         {
-            float speed = Grounded? moveSpeed : airBorneSpeed;
-            rb.MovePosition(horizontalInput * speed * Time.fixedDeltaTime * Vector3.right + transform.position);
+            float speed = Grounded? _moveSpeed : _airBorneSpeed;
+            _rb.MovePosition(_horizontalInput * speed * Time.fixedDeltaTime * Vector3.right + transform.position);
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag(groundTag))
+        if(collision.gameObject.CompareTag(_groundTag))
         {
             Grounded = true;
         }

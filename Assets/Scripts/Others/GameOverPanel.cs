@@ -1,33 +1,38 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameOverPanel : MonoBehaviour
 {
     [SerializeField]
-    int sceneIndex = 0;
+    [FormerlySerializedAs("sceneIndex")]
+    private int _sceneIndex = 0;
 
     [SerializeField]
-    GameObject gameObjectToEnable;
+    [FormerlySerializedAs("gameObjectToEnable")]
+    private GameObject _gameObjectToEnable;
 
     [SerializeField]
-    float showUpDelay = 2f;
+    [FormerlySerializedAs("showUpDelay")]
+    private float _showUpDelay = 2f;
 
     [SerializeField]
-    ResultText resultText;
+    [FormerlySerializedAs("resultText")]
+    private ResultText _resultText;
 
     public void ShowUp()
     {
-        Invoke(nameof(ShowUpPanel), showUpDelay);
+        Invoke(nameof(ShowUpPanel), _showUpDelay);
     }
 
-    void ShowUpPanel()
+    private void ShowUpPanel()
     {
-        gameObjectToEnable.SetActive(true);
+        _gameObjectToEnable.SetActive(true);
     }
  
     public void ReloadScene()
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(_sceneIndex);
     }
 
     public void Quit()

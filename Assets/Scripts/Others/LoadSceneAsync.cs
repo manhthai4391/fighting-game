@@ -2,22 +2,25 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class LoadSceneAsync : MonoBehaviour
 {
+    [FormerlySerializedAs("sceneID")]
     [SerializeField]
-    private int sceneID;
+    private int _sceneID;
 
-    public UnityEvent<float> onSceneLoading;
+    [FormerlySerializedAs("onSceneLoading")]
+    public UnityEvent<float> OnSceneLoading;
 
     public void StartLoadingSceneAsync()
     {
         StartCoroutine(LoadScene());
     }
 
-    IEnumerator LoadScene()
+    private IEnumerator LoadScene()
     {
-        AsyncOperation sceneLoadingOperation = SceneManager.LoadSceneAsync(sceneID);
+        AsyncOperation sceneLoadingOperation = SceneManager.LoadSceneAsync(_sceneID);
         sceneLoadingOperation.allowSceneActivation = false;
         while (!sceneLoadingOperation.isDone)
         {
@@ -27,7 +30,7 @@ public class LoadSceneAsync : MonoBehaviour
             }
             else
             {
-                onSceneLoading?.Invoke(sceneLoadingOperation.progress);
+                OnSceneLoading?.Invoke(sceneLoadingOperation.progress);
             }
             yield return null;
         }

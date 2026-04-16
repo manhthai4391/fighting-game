@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Health : MonoBehaviour
 {
     public int CurrentHealth { get; private set; }
-    public int maxHealth;
+    [FormerlySerializedAs("maxHealth")]
+    public int MaxHealth;
 
-    public UnityAction onHealthValueChange = delegate { };
+    [FormerlySerializedAs("onHealthValueChange")]
+    public UnityAction OnHealthValueChange = delegate { };
 
     void Start()
     {
-        CurrentHealth = maxHealth;
+        CurrentHealth = MaxHealth;
     }
 
     public void TakeDamage(int amount)
@@ -20,16 +23,16 @@ public class Health : MonoBehaviour
         {
             CurrentHealth = 0;
         }
-        onHealthValueChange.Invoke();
+        OnHealthValueChange.Invoke();
     }
 
     public void Heal(int amount)
     {
         CurrentHealth += amount;
-        if(CurrentHealth > maxHealth)
+        if(CurrentHealth > MaxHealth)
         {
-            CurrentHealth = maxHealth;
+            CurrentHealth = MaxHealth;
         }
-        onHealthValueChange.Invoke();
+        OnHealthValueChange.Invoke();
     }
 }

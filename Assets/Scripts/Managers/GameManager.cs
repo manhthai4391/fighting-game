@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Character[] characters;
+    [FormerlySerializedAs("characters")]
+    public Character[] Characters;
 
-    public UnityEvent onGameOverEvent; 
+    [FormerlySerializedAs("onGameOverEvent")]
+    public UnityEvent OnGameOverEvent; 
 
     private void Awake()
     {
@@ -24,22 +27,22 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        foreach(Character character in characters)
+        foreach(Character character in Characters)
         {
-            character.onCharacterDieEvent += GameOver;
+            character.OnCharacterDieEvent += GameOver;
         }
     }
 
-    void GameOver()
+    private void GameOver()
     {
-        foreach(Character character in characters)
+        foreach(Character character in Characters)
         {
             if(!character.IsDead)
             {
                 character.Win();
             }
-            character.onCharacterDieEvent -= GameOver;
+            character.OnCharacterDieEvent -= GameOver;
         }
-        onGameOverEvent?.Invoke();
+        OnGameOverEvent?.Invoke();
     }
 }

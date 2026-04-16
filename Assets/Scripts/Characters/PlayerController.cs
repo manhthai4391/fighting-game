@@ -34,23 +34,23 @@ public class PlayerController : Character, IHurtResponse
     {
         if (IgnoreInput())
             return;
-        movement.MoveLeft();
-        animator.Move(Vector2.left);
+        Movement.MoveLeft();
+        Animator.Move(Vector2.left);
     }
 
     private void OnMoveRight()
     {
         if (IgnoreInput())
             return;
-        movement.MoveRight();
-        animator.Move(Vector2.right);
+        Movement.MoveRight();
+        Animator.Move(Vector2.right);
     }
     private void OnStopMoving()
     {
         if (IgnoreInput())
             return;
-        movement.StopMoving();
-        animator.Move(Vector2.zero);
+        Movement.StopMoving();
+        Animator.Move(Vector2.zero);
     }
 
     private void OnAttack(string attackName)
@@ -83,22 +83,22 @@ public class PlayerController : Character, IHurtResponse
     {
         if (IgnoreInput()) 
             return;
-        _ = attack.GetAttackData(attackName);
-        animator.Attack(attackName);
+        _ = AttackComponent.GetAttackData(attackName);
+        Animator.Attack(attackName);
     }
 
     public override void RightDash()
     {
         if (IgnoreInput())
             return;
-        movement.RightDash();
+        Movement.RightDash();
     }
 
     public override void LeftDash()
     {
         if (IgnoreInput())
             return;
-        movement.LeftDash();
+        Movement.LeftDash();
     }
 
     #region Hurt
@@ -107,7 +107,7 @@ public class PlayerController : Character, IHurtResponse
         HurtBox[] hurtBoxes = GetComponentsInChildren<HurtBox>();
         foreach(HurtBox hurtBox in hurtBoxes)
         {
-            hurtBox.onHitEvent += OnGotHit;
+            hurtBox.OnHitEvent += OnGotHit;
         }
     }
 
@@ -116,7 +116,7 @@ public class PlayerController : Character, IHurtResponse
         HurtBox[] hurtBoxes = GetComponentsInChildren<HurtBox>(true);
         foreach (HurtBox hurtBox in hurtBoxes)
         {
-            hurtBox.onHitEvent -= OnGotHit;
+            hurtBox.OnHitEvent -= OnGotHit;
         }
     }
 
@@ -125,16 +125,16 @@ public class PlayerController : Character, IHurtResponse
         if(IsDead) 
             return;
 
-        if(health != null)
+        if(Health != null)
         {
-            health.TakeDamage(hitData.attack.damage);
-            if (health.CurrentHealth <= 0)
+            Health.TakeDamage(hitData.Attack.Damage);
+            if (Health.CurrentHealth <= 0)
             {
                 Die();
             }
         }
         
-        animator.Hurt(hitData.hurtBoxPosition);
+        Animator.Hurt(hitData.HurtBoxPosition);
         EffectsManager.Instance.OnHitEvent?.Invoke(hitData);
     }
 
@@ -158,18 +158,18 @@ public class PlayerController : Character, IHurtResponse
     {
         yield return new WaitForEndOfFrame();
         IsDead = true;
-        animator.Die();
+        Animator.Die();
 
         //clear movement input
-        movement.StopMoving();
-        movement.CannotMove = true;
+        Movement.StopMoving();
+        Movement.CannotMove = true;
 
-        onCharacterDieEvent?.Invoke();
+        OnCharacterDieEvent?.Invoke();
     }
 
     public override void Win()
     {
-        animator.Win();
+        Animator.Win();
     }
 
     private void OnDestroy()

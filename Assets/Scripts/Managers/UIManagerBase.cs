@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [DisallowMultipleComponent]
 public class UIManagerBase : MonoBehaviour
 {
-    public static UIManagerBase instance;
+    public static UIManagerBase Instance;
 
     [SerializeField]
-    protected Health[] healths;
+    [FormerlySerializedAs("healths")]
+    protected Health[] Healths;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (instance == null) 
+        if (Instance == null) 
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

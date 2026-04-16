@@ -1,25 +1,27 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ResultText : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI text;
+    [FormerlySerializedAs("text")]
+    private TextMeshProUGUI _text;
 
     public void UpdateResult()
     {
-        Character[] characters = FindObjectsOfType<Character>();
+        Character[] characters = GameManager.Instance.Characters;
         if (characters[0].IsDead)
         {
             if (characters[0].gameObject.CompareTag("Player"))
             {
                 //Player 1 is dead
-                text.text = "Player 2 win!";
+                _text.text = "Player 2 win!";
             }
             else
             {
                 //Player 2 is dead
-                text.text = "Player 1 win!";
+                _text.text = "Player 1 win!";
             }
         }
         else if (characters[1].IsDead)
@@ -27,12 +29,12 @@ public class ResultText : MonoBehaviour
             if (characters[1].gameObject.CompareTag("Player"))
             {
                 //Player 1 is dead
-                text.text = "Player 2 win!";
+                _text.text = "Player 2 win!";
             }
             else
             {
                 //Player 2 is dead
-                text.text = "Player 1 win!";
+                _text.text = "Player 1 win!";
             }
         }
     }

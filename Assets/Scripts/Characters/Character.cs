@@ -2,27 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour
 {
     [HideInInspector]
-    public Health health;
-    public IAnimatorBase animator;
-    public IMovementBase movement;
-    public IAttackBase attack;
+    [FormerlySerializedAs("health")]
+    public Health Health;
+    [FormerlySerializedAs("animator")]
+    public IAnimatorBase Animator;
+    [FormerlySerializedAs("movement")]
+    public IMovementBase Movement;
+    [FormerlySerializedAs("attack")]
+    public IAttackBase AttackComponent;
 
-    public UnityAction onCharacterDieEvent = delegate { };
-    public UnityAction<HitData> onCharacterHurtEvent = delegate { };
+    [FormerlySerializedAs("onCharacterDieEvent")]
+    public UnityAction OnCharacterDieEvent = delegate { };
+    [FormerlySerializedAs("onCharacterHurtEvent")]
+    public UnityAction<HitData> OnCharacterHurtEvent = delegate { };
 
     public bool IsHurt { get; protected set; }
     public bool IsDead { get; protected set; }
 
-    void Awake()
+    private void Awake()
     {
-        health = GetComponent<Health>();
-        animator = GetComponent<IAnimatorBase>();
-        movement = GetComponent<IMovementBase>();
-        attack = GetComponent<IAttackBase>();
+        Health = GetComponent<Health>();
+        Animator = GetComponent<IAnimatorBase>();
+        Movement = GetComponent<IMovementBase>();
+        AttackComponent = GetComponent<IAttackBase>();
     }
 
     public virtual void Move(Vector2 input)
@@ -57,7 +64,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual void Die()
     {
-        onCharacterDieEvent?.Invoke();
+        OnCharacterDieEvent?.Invoke();
         IsDead = true;
     }
 

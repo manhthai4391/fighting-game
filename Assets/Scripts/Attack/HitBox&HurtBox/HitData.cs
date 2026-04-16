@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class HitData
 {
-    public Vector3 hitPoint;
-    public AttackData attack;
-    public HurtBoxPosition hurtBoxPosition;
-    public Transform hurtBoxTransform;
+    [FormerlySerializedAs("hitPoint")]
+    public Vector3 HitPoint;
+    [FormerlySerializedAs("attack")]
+    public AttackData Attack;
+    [FormerlySerializedAs("hurtBoxPosition")]
+    public HurtBoxPosition HurtBoxPosition;
+    [FormerlySerializedAs("hurtBoxTransform")]
+    public Transform HurtBoxTransform;
 }

@@ -1,34 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAttack : MonoBehaviour, IAttackBase
 {
     public AttackData CurrentAttack { get; private set; }
 
     [SerializeField]
-    private AttackData[] attacks;
+    [FormerlySerializedAs("attacks")]
+    private AttackData[] _attacks;
 
     [SerializeField]
-    private HitBox[] hitBoxes;
+    [FormerlySerializedAs("hitBoxes")]
+    private HitBox[] _hitBoxes;
 
     private Dictionary<string, AttackData> _attackDictionary;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _attackDictionary = new Dictionary<string, AttackData>();
-        foreach(var attack in attacks)
+        foreach(var attack in _attacks)
         {
-            _attackDictionary.Add(attack.attackName, attack);
+            _attackDictionary.Add(attack.AttackName, attack);
         }
-        attacks = null;
+        _attacks = null;
 
-        foreach(var hit in hitBoxes)
+        foreach(var hit in _hitBoxes)
         {
             hit.gameObject.SetActive(false);
-            hit.colliderTag = gameObject.tag;
-            hit.attack = this;
+            hit.ColliderTag = gameObject.tag;
+            hit.Attack = this;
         }
     }
 

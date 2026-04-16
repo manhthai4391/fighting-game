@@ -34,6 +34,6 @@ public class ParticleFXManager : MonoBehaviour, IHitFXBase
 
     public void PlayHitFX(HitData hitData)
     {
-        Play(hitData.hitPoint);
+        Play(hitData.HitPoint);
     }
 }

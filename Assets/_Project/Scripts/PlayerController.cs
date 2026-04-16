@@ -4,16 +4,21 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace UnityDemoProject
 {
     [System.Serializable]
     public class Combo
     {
-        public string title;
-        public float duration = 10;
-        public List<int> moves = new List<int>();
-        public UnityEvent onComplete = new UnityEvent();
+        [FormerlySerializedAs("title")]
+        public string Title;
+        [FormerlySerializedAs("duration")]
+        public float Duration = 10;
+        [FormerlySerializedAs("moves")]
+        public List<int> Moves = new List<int>();
+        [FormerlySerializedAs("onComplete")]
+        public UnityEvent OnComplete = new UnityEvent();
     }
 
     public class PlayerController : MonoBehaviour
@@ -28,7 +33,8 @@ namespace UnityDemoProject
         [SerializeField] Combo[] comboList = default;
 
 
-        public FloatEvent onComboCharge = new FloatEvent();
+        [FormerlySerializedAs("onComboCharge")]
+        public FloatEvent OnComboCharge = new FloatEvent();
 
         // References
         CharacterController controller;
@@ -73,7 +79,7 @@ namespace UnityDemoProject
         }
         void OnJump(InputValue value)
         {
-            comboList[0].onComplete.Invoke();
+            comboList[0].OnComplete.Invoke();
             currentCombo.Clear();
 
             if (groundedPlayer)
@@ -102,9 +108,9 @@ namespace UnityDemoProject
             currentCombo.Add(move);
             foreach (Combo combo in comboList)
             {
-                if (currentCombo.SequenceEqual(combo.moves))
+                if (currentCombo.SequenceEqual(combo.Moves))
                 {
-                    combo.onComplete.Invoke();
+                    combo.OnComplete.Invoke();
                     currentCombo.Clear();
                     break;
                 }
@@ -118,7 +124,7 @@ namespace UnityDemoProject
                 if (collider.TryGetComponent<Damageable>(out Damageable damageable))
                 {
                     currentComboCharge += 0.1f;
-                    onComboCharge.Invoke(currentComboCharge / 1);
+                    OnComboCharge.Invoke(currentComboCharge / 1);
                     damageable.Damage(5);
                     break;
                 }
@@ -136,7 +142,7 @@ namespace UnityDemoProject
 
             IEnumerator Attack(Damageable damageable)
             {
-                for (int i = 0; i < comboList[0].duration; i++)
+                for (int i = 0; i < comboList[0].Duration; i++)
                 {
                     damageable.Damage(3);
                     yield return new WaitForSeconds(0.2f);

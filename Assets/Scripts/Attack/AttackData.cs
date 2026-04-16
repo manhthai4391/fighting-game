@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum HitboxType
 {
@@ -24,13 +25,22 @@ public enum AttackType
 [CreateAssetMenu(menuName = "Fighting Game/Attack Data", fileName = "New Attack")]
 public class AttackData : ScriptableObject
 {
-    public string attackName;
-    public HitboxType hitboxType;
-    public AttackIntensity intensity;
-    public AttackType attackType;
-    public int damage;
-    public float stun;
-    public bool canBeBlocked;
-    public bool isCritical;
-    public int chipDamage;
+    [FormerlySerializedAs("attackName")]
+    public string AttackName;
+    [FormerlySerializedAs("hitboxType")]
+    public HitboxType HitboxType;
+    [FormerlySerializedAs("intensity")]
+    public AttackIntensity Intensity;
+    [FormerlySerializedAs("attackType")]
+    public AttackType AttackType;
+    [FormerlySerializedAs("damage")]
+    public int Damage;
+    [FormerlySerializedAs("stun")]
+    public float Stun;
+    [FormerlySerializedAs("canBeBlocked")]
+    public bool CanBeBlocked;
+    [FormerlySerializedAs("isCritical")]
+    public bool IsCritical;
+    [FormerlySerializedAs("chipDamage")]
+    public int ChipDamage;
 }
