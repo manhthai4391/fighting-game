@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : Character, IHurtResponse
 {
-    private IInputReader playerInput;
+    private IInputReader _playerInput;
 
     private bool IgnoreInput()
     {
@@ -14,7 +14,7 @@ public class PlayerController : Character, IHurtResponse
     // Start is called before the first frame update
     private void Start()
     {
-        playerInput = GetComponent<IInputReader>();
+        _playerInput = GetComponent<IInputReader>();
         InputBinding();
         RegisterHurtBoxes();
     }
@@ -22,12 +22,12 @@ public class PlayerController : Character, IHurtResponse
     #region Input Binding
     private void InputBinding()
     {
-        playerInput.OnMoveLeftEvent += OnMoveLeft;
-        playerInput.OnMoveRightEvent += OnMoveRight;
-        playerInput.OnStopMovingEvent += OnStopMoving;
-        playerInput.OnRightDashEvent += OnRightDash;
-        playerInput.OnLeftDashEvent += OnLeftDash;
-        playerInput.OnAttackEvent += OnAttack;
+        _playerInput.OnMoveLeftEvent += OnMoveLeft;
+        _playerInput.OnMoveRightEvent += OnMoveRight;
+        _playerInput.OnStopMovingEvent += OnStopMoving;
+        _playerInput.OnRightDashEvent += OnRightDash;
+        _playerInput.OnLeftDashEvent += OnLeftDash;
+        _playerInput.OnAttackEvent += OnAttack;
     }
 
     private void OnMoveLeft()
@@ -70,12 +70,12 @@ public class PlayerController : Character, IHurtResponse
 
     private void UnBindInput()
     {
-        playerInput.OnMoveLeftEvent -= OnMoveLeft;
-        playerInput.OnMoveRightEvent -= OnMoveRight;
-        playerInput.OnStopMovingEvent -= OnStopMoving;
-        playerInput.OnRightDashEvent -= OnRightDash;
-        playerInput.OnLeftDashEvent -= OnLeftDash;
-        playerInput.OnAttackEvent -= OnAttack;
+        _playerInput.OnMoveLeftEvent -= OnMoveLeft;
+        _playerInput.OnMoveRightEvent -= OnMoveRight;
+        _playerInput.OnStopMovingEvent -= OnStopMoving;
+        _playerInput.OnRightDashEvent -= OnRightDash;
+        _playerInput.OnLeftDashEvent -= OnLeftDash;
+        _playerInput.OnAttackEvent -= OnAttack;
     }
     #endregion
 
@@ -135,7 +135,7 @@ public class PlayerController : Character, IHurtResponse
         }
         
         Animator.Hurt(hitData.HurtBoxPosition);
-        EffectsManager.Instance.OnHitEvent?.Invoke(hitData);
+        EffectsManager.OnHitEvent?.Invoke(hitData);
     }
 
     public override void EnterHurtState()

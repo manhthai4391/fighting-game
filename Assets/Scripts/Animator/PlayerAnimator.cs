@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimator : MonoBehaviour, IAnimatorBase
 {
     private readonly int moveBoolID = Animator.StringToHash("Move");

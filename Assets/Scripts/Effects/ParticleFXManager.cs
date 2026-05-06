@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ParticleFXManager : MonoBehaviour, IHitFXBase
 {
     [SerializeField]
-    ParticleSystem[] hitEffects;
+    [FormerlySerializedAs("hitEffects")]
+    private ParticleSystem[] _hitEffects;
 
-    void Start() 
+    private void Start() 
     {
-        EffectsManager.Instance.OnHitEvent += PlayHitFX;
+        EffectsManager.OnHitEvent += PlayHitFX;
     }
 
     private void OnDestroy()
     {
-        EffectsManager.Instance.OnHitEvent -= PlayHitFX;
+        EffectsManager.OnHitEvent -= PlayHitFX;
     }
 
     public void Play(Vector3 position)
     {
-        foreach(ParticleSystem particle in hitEffects)
+        foreach(ParticleSystem particle in _hitEffects)
         {
             if(!particle.gameObject.activeInHierarchy)
                 particle.gameObject.SetActive(true);

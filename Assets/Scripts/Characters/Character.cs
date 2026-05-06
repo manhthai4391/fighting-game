@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour
 {
-    [HideInInspector]
-    [FormerlySerializedAs("health")]
-    public Health Health;
-    [FormerlySerializedAs("animator")]
-    public IAnimatorBase Animator;
-    [FormerlySerializedAs("movement")]
-    public IMovementBase Movement;
-    [FormerlySerializedAs("attack")]
-    public IAttackBase AttackComponent;
+    public Health Health { get; private set; }
+    public IAnimatorBase Animator { get; private set; }
+    public IMovementBase Movement { get; private set; }
+    public IAttackBase AttackComponent { get; private set; }
 
-    [FormerlySerializedAs("onCharacterDieEvent")]
     public UnityAction OnCharacterDieEvent = delegate { };
-    [FormerlySerializedAs("onCharacterHurtEvent")]
     public UnityAction<HitData> OnCharacterHurtEvent = delegate { };
 
     public bool IsHurt { get; protected set; }

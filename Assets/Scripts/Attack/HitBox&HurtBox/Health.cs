@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [FormerlySerializedAs("onHealthValueChange")]
     public UnityAction OnHealthValueChange = delegate { };
 
-    void Start()
+    private void Start()
     {
         CurrentHealth = MaxHealth;
     }

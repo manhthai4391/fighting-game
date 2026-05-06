@@ -5,26 +5,26 @@ public class PlayerInputSplitter : MonoBehaviour
 {
     public InputActionAsset InputActionAsset;
 
-    public IInputReader[] inputReaders;
-
     public string actionMapName = "Gameplay";
+
+    [SerializeField]
+    private Character[] _characters;
 
     private void Start()
     {
         InputActionAsset.Enable();
         InputActionMap actionMap = InputActionAsset.FindActionMap(actionMapName);
 
-        if(GameManager.Instance.Characters != null && GameManager.Instance.Characters.Length > 0)
+        IInputReader[] inputReaders;
+
+        if(_characters != null && _characters.Length > 0)
         {
-            inputReaders = new IInputReader[GameManager.Instance.Characters.Length];
-            for(int i = 0; i < GameManager.Instance.Characters.Length; i++)
+            inputReaders = new IInputReader[_characters.Length];
+            for(int i = 0; i < _characters.Length; i++)
             {
-                inputReaders[i] = GameManager.Instance.Characters[i].GetComponent<IInputReader>();
+                inputReaders[i] = _characters[i].GetComponent<IInputReader>();
+                inputReaders[i].Initialize(actionMap, i);
             }
-        }
-        for(int i = 0; i < inputReaders.Length; i++)
-        {
-            inputReaders[i].Initialize(actionMap, i);
         }
     }
 

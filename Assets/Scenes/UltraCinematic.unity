@@ -1493,11 +1493,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229776601}
+  - component: {fileID: 229776594}
   - component: {fileID: 229776600}
   - component: {fileID: 229776597}
   - component: {fileID: 229776596}
   - component: {fileID: 229776595}
-  - component: {fileID: 229776594}
   - component: {fileID: 229776593}
   - component: {fileID: 229776592}
   - component: {fileID: 229776590}
@@ -1581,7 +1581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c125c1fa08b45d4ab23a19ac23ff378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 229776596}
 --- !u!114 &229776595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10891,8 +10890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e1ec825cbc34d3ebf6b10261da2985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1011740090}
-  hitSound: {fileID: 8300000, guid: ddf0df134c00ae441936b1e9618948ef, type: 3}
+  _audioSource: {fileID: 1011740090}
+  _hitSound: {fileID: 8300000, guid: ddf0df134c00ae441936b1e9618948ef, type: 3}
 --- !u!114 &1011740088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10905,7 +10904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ca7ee43d38f496cba9e4d41579d06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffects:
+  _hitEffects:
   - {fileID: 1440107635598296368}
 --- !u!114 &1011740089
 MonoBehaviour:
@@ -25137,6 +25136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputActionAsset: {fileID: -944628639613478452, guid: 5bd58c54d4bba2a498e9522f6734e163, type: 3}
   actionMapName: Gameplay
+  _characters:
+  - {fileID: 919132149062855886}
+  - {fileID: 229776594}
 --- !u!4 &2061045006
 Transform:
   m_ObjectHideFlags: 0
@@ -27383,6 +27385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 50124765789976908}
+  _characters:
+  - {fileID: 919132149062855886}
+  - {fileID: 229776594}
 --- !u!1 &50124765789976910
 GameObject:
   m_ObjectHideFlags: 0
@@ -28203,7 +28208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c125c1fa08b45d4ab23a19ac23ff378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 919132149062855891}
 --- !u!65 &919132149062855887
 BoxCollider:
   m_ObjectHideFlags: 0

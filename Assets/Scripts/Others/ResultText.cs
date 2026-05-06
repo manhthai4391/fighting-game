@@ -8,9 +8,12 @@ public class ResultText : MonoBehaviour
     [FormerlySerializedAs("text")]
     private TextMeshProUGUI _text;
 
+    [SerializeField]
+    private Character[] _characters;
+
     public void UpdateResult()
     {
-        Character[] characters = GameManager.Instance.Characters;
+        Character[] characters = _characters;
         if (characters[0].IsDead)
         {
             if (characters[0].gameObject.CompareTag("Player"))

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementRB : MonoBehaviour, IMovementBase
 {
     public bool CannotMove { get; set; }
